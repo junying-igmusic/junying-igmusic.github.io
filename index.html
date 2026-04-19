@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGNITION MUSIC TECH - 用技术服务古典音乐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #FFFFFF;
+            --bg-alt: #F7F7F7;
+            --bg-card: #FFFFFF;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --text-muted: #999999;
+            --border: #E0E0E0;
+            --border-hover: #BBBBBB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========== 导航栏 ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.7rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #000;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .lang-toggle {
+            padding: 0.35rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-toggle:hover {
+            border-color: #000;
+            color: var(--text-primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        /* ========== Hero ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            color: #000;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* ========== 通用板块 ========== */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== 产品展示 ========== */
+        .product-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+
+        .product-showcase:last-child {
+            margin-bottom: 0;
+        }
+
+        .product-showcase.reverse {
+            direction: rtl;
+        }
+
+        .product-showcase.reverse > * {
+            direction: ltr;
+        }
+
+        .product-info h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-tagline {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .product-info p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            margin-bottom: 2rem;
+        }
+
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .feature-tag {
+            padding: 0.5rem 1.2rem;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* iPad 外框 */
+        .ipad-frame {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            background: #1C1C1E;
+            border-radius: 28px;
+            padding: 18px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+        }
+
+        .ipad-camera {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #2C2C2E;
+            border: 1px solid #3A3A3C;
+        }
+
+        .ipad-screen {
+            background: #F5F5F7;
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+        }
+
+        .ipad-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        /* iPhone 外框 */
+        .iphone-frame {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            background: #1C1C1E;
+            border-radius: 40px;
+            padding: 14px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+        }
+
+        .iphone-notch {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 28px;
+            background: #1C1C1E;
+            border-radius: 0 0 18px 18px;
+            z-index: 10;
+        }
+
+        .iphone-screen {
+            background: #FFFFFF;
+            border-radius: 28px;
+            overflow: hidden;
+            aspect-ratio: 9 / 19.5;
+        }
+
+        .iphone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .iphone-home-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: #666;
+            border-radius: 2px;
+            z-index: 10;
+        }
+
+        /* ========== 关于我们 ========== */
+        .about-section {
+            background: var(--bg-alt);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 400px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #EEEEEE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wave-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 200px;
+        }
+
+        .wave-bar {
+            width: 6px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, #333333, #CCCCCC);
+            animation: wave-dance 1.2s ease-in-out infinite;
+        }
+
+        @keyframes wave-dance {
+            0%, 100% { height: 20px; opacity: 0.3; }
+            50% { height: var(--wave-h, 100px); opacity: 1; }
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #000;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+
+        /* ========== 联系方式 ========== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info > p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-detail-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-top: 0.2rem;
+        }
+
+        .contact-form {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #000;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* ========== 页脚 ========== */
+        .footer {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #000;
+            letter-spacing: 2px;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #000;
+        }
+
+        /* ========== 滚动淡入动画 ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-showcase {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .product-showcase.reverse {
+                direction: ltr;
+            }
+
+            .ipad-frame {
+                max-width: 360px;
+            }
+
+            .iphone-frame {
+                max-width: 240px;
+            }
+
+            .about-visual {
+                height: 280px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== 导航栏 ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">IGNITION MUSIC TECH</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-i18n="nav_home">首页</a></li>
+                <li><a href="#products" data-i18n="nav_products">产品</a></li>
+                <li><a href="#about" data-i18n="nav_about">关于我们</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">联系我们</a></li>
+                <li><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== Hero ========== -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 data-i18n="hero_title">让古典音乐更好学<br>也更好懂</h1>
+            <p data-i18n="hero_desc">我们用技术服务古典音乐：让乐谱使用更顺手，让知识与讲解更可检索、更可信。</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary" data-i18n="hero_btn1">探索我们的产品</a>
+                <a href="#contact" class="btn btn-outline" data-i18n="hero_btn2">联系我们</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 产品展示 ========== -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-label" data-i18n="products_label">我们的产品</p>
+                <h2 class="section-title" data-i18n="products_title">为古典音乐人打造的专业工具</h2>
+            </div>
+
+            <!-- 产品 1: SonateX -->
+            <div class="product-showcase fade-in">
+                <div class="ipad-frame">
+                    <div class="ipad-camera"></div>
+                    <div class="ipad-screen">
+                        <img src="sonatex-screenshot.png" alt="SonateX - 乐谱管理应用界面">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>SonateX</h3>
+                    <div class="product-tagline" data-i18n="sonatex_tagline">专业乐谱管理 · iPad</div>
+                    <p data-i18n="sonatex_desc">SonateX 由尖端技术团队与一线专业演奏者共同打磨，围绕学习与演出中的真实痛点进行"1:1 工作流"设计，让翻谱、标注、整理与调用更高效、更稳定。</p>
+                    <div class="product-features">
+                        <span class="feature-tag" data-i18n="sonatex_f1">智能翻谱</span>
+                        <span class="feature-tag" data-i18n="sonatex_f2">乐谱标注</span>
+                        <span class="feature-tag" data-i18n="sonatex_f3">乐谱管理</span>
+                        <span class="feature-tag" data-i18n="sonatex_f4">演出模式</span>
+                        <span class="feature-tag" data-i18n="sonatex_f6">古典音乐元数据库</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品 2: Masternotes -->
+            <div class="product-showcase reverse fade-in">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <div class="iphone-screen">
+                        <img src="masternotes-screenshot.jpg" alt="Masternotes - 音乐知识平台界面">
+                    </div>
+                    <div class="iphone-home-bar"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Masternotes</h3>
+                    <div class="product-tagline" data-i18n="master_tagline">音乐知识检索与鉴赏 · iPhone</div>
+                    <p data-i18n="master_desc">Masternotes 汇聚海量高质量音乐教育与音乐鉴赏资源，由专业音乐人才筛选关键信息并结构化整理，既支持按大师、曲目、技术问题检索，也提供面向爱好者的古典乐讲解与自然语言问答。</p>
+                    <div class="product-features">
+                        <span class="feature-tag" data-i18n="master_f1">大师检索</span>
+                        <span class="feature-tag" data-i18n="master_f2">曲目查询</span>
+                        <span class="feature-tag" data-i18n="master_f3">结构化知识</span>
+                        <span class="feature-tag" data-i18n="master_f4">自然语言问答</span>
+                        <span class="feature-tag" data-i18n="master_f5">古典乐鉴赏</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== 关于我们 ========== -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-label" data-i18n="about_label">关于我们</p>
+                <h2 class="section-title" data-i18n="about_title">音乐与科技的交汇点</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-visual fade-in">
+                    <div class="wave-container">
+                        <div class="wave-bar" style="--wave-h: 80px; animation-delay: 0s;"></div>
+                        <div class="wave-bar" style="--wave-h: 120px; animation-delay: 0.1s;"></div>
+                        <div class="wave-bar" style="--wave-h: 60px; animation-delay: 0.2s;"></div>
+                        <div class="wave-bar" style="--wave-h: 150px; animation-delay: 0.3s;"></div>
+                        <div class="wave-bar" style="--wave-h: 90px; animation-delay: 0.4s;"></div>
+                        <div class="wave-bar" style="--wave-h: 130px; animation-delay: 0.5s;"></div>
+                        <div class="wave-bar" style="--wave-h: 70px; animation-delay: 0.6s;"></div>
+                        <div class="wave-bar" style="--wave-h: 160px; animation-delay: 0.7s;"></div>
+                        <div class="wave-bar" style="--wave-h: 100px; animation-delay: 0.8s;"></div>
+                        <div class="wave-bar" style="--wave-h: 140px; animation-delay: 0.9s;"></div>
+                        <div class="wave-bar" style="--wave-h: 55px; animation-delay: 1.0s;"></div>
+                        <div class="wave-bar" style="--wave-h: 110px; animation-delay: 1.1s;"></div>
+                        <div class="wave-bar" style="--wave-h: 85px; animation-delay: 0.15s;"></div>
+                        <div class="wave-bar" style="--wave-h: 145px; animation-delay: 0.35s;"></div>
+                        <div class="wave-bar" style="--wave-h: 75px; animation-delay: 0.55s;"></div>
+                        <div class="wave-bar" style="--wave-h: 125px; animation-delay: 0.75s;"></div>
+                        <div class="wave-bar" style="--wave-h: 95px; animation-delay: 0.95s;"></div>
+                        <div class="wave-bar" style="--wave-h: 135px; animation-delay: 0.25s;"></div>
+                        <div class="wave-bar" style="--wave-h: 65px; animation-delay: 0.45s;"></div>
+                        <div class="wave-bar" style="--wave-h: 155px; animation-delay: 0.65s;"></div>
+                    </div>
+                </div>
+                <div class="about-text fade-in">
+                    <h3 data-i18n="about_heading">我们相信，科技能让音乐触达更远的地方</h3>
+                    <p data-i18n="about_p1">IGNITION MUSIC TECH 成立于对音乐和技术的共同热爱。我们的团队汇聚了音乐人、工程师和设计师，致力于用创新技术解决音乐行业的真实痛点。</p>
+                    <p data-i18n="about_p2">从智能乐谱管理到结构化音乐知识检索，我们不断探索音乐与科技的边界，帮助演奏者和爱好者释放无限可能。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 联系我们 ========== -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-label" data-i18n="contact_label">联系我们</p>
+                <h2 class="section-title" data-i18n="contact_title">开始你的音乐科技之旅</h2>
+                <p class="section-desc" data-i18n="contact_desc">无论你是独立音乐人还是企业客户，我们都期待与你合作。</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h3 data-i18n="contact_heading">与我们取得联系</h3>
+                    <p data-i18n="contact_p">有任何想法或合作意向？欢迎随时联系我们，我们的团队会在 24 小时内回复你。</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <div class="contact-detail-label" data-i18n="contact_email_label">邮箱</div>
+                            <div class="contact-detail-value">info@igmusictech.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <div class="contact-detail-label" data-i18n="contact_web_label">网站</div>
+                            <div class="contact-detail-value">www.igmusictech.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <div class="contact-detail-label" data-i18n="contact_addr_label">地址</div>
+                            <div class="contact-detail-value">UNIT 2A, 17/F GLENEALY TOWER, NO.1 GLENEALY CENTRAL, Hong Kong</div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-i18n="form_name">姓名</label>
+                            <input type="text" id="name" placeholder="你的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="form_email">邮箱</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" data-i18n="form_subject">主题</label>
+                        <input type="text" id="subject" placeholder="合作咨询 / 技术支持 / 其他">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="form_message">留言</label>
+                        <textarea id="message" placeholder="请描述你的需求或想法..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit" data-i18n="form_submit">发送消息</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 页脚 ========== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">IGNITION MUSIC TECH</div>
+            <p class="footer-text">&copy; 2026 IGNITION MUSIC TECH. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#home" data-i18n="nav_home">首页</a>
+                <a href="#products" data-i18n="nav_products">产品</a>
+                <a href="#about" data-i18n="foot_about">关于</a>
+                <a href="#contact" data-i18n="foot_contact">联系</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== 多语言翻译 ==========
+        let currentLang = 'zh';
+
+        const i18n = {
+            zh: {
+                nav_home: '首页',
+                nav_products: '产品',
+                nav_about: '关于我们',
+                nav_contact: '联系我们',
+                hero_title: '让古典音乐更好学<br>也更好懂',
+                hero_desc: '我们用技术服务古典音乐：让乐谱使用更顺手，让知识与讲解更可检索、更可信。',
+                hero_btn1: '探索我们的产品',
+                hero_btn2: '联系我们',
+                products_label: '我们的产品',
+                products_title: '为古典音乐人打造的专业工具',
+                sonatex_tagline: '专业乐谱管理 · iPad',
+                sonatex_desc: 'SonateX 由尖端技术团队与一线专业演奏者共同打磨，围绕学习与演出中的真实痛点进行"1:1 工作流"设计，让翻谱、标注、整理与调用更高效、更稳定。',
+                sonatex_f1: '智能翻谱', sonatex_f2: '乐谱标注', sonatex_f3: '乐谱管理', sonatex_f4: '演出模式', sonatex_f6: '古典音乐元数据库',
+                master_tagline: '音乐知识检索与鉴赏 · iPhone',
+                master_desc: 'Masternotes 汇聚海量高质量音乐教育与音乐鉴赏资源，由专业音乐人才筛选关键信息并结构化整理，既支持按大师、曲目、技术问题检索，也提供面向爱好者的古典乐讲解与自然语言问答。',
+                master_f1: '大师检索', master_f2: '曲目查询', master_f3: '结构化知识', master_f4: '自然语言问答', master_f5: '古典乐鉴赏',
+                about_label: '关于我们',
+                about_title: '音乐与科技的交汇点',
+                about_heading: '我们相信，科技能让音乐触达更远的地方',
+                about_p1: 'IGNITION MUSIC TECH 成立于对音乐和技术的共同热爱。我们的团队汇聚了音乐人、工程师和设计师，致力于用创新技术解决音乐行业的真实痛点。',
+                about_p2: '从智能乐谱管理到结构化音乐知识检索，我们不断探索音乐与科技的边界，帮助演奏者和爱好者释放无限可能。',
+                contact_label: '联系我们',
+                contact_title: '开始你的音乐科技之旅',
+                contact_desc: '无论你是独立音乐人还是企业客户，我们都期待与你合作。',
+                contact_heading: '与我们取得联系',
+                contact_p: '有任何想法或合作意向？欢迎随时联系我们，我们的团队会在 24 小时内回复你。',
+                contact_email_label: '邮箱',
+                contact_web_label: '网站',
+                contact_addr_label: '地址',
+                form_name: '姓名', form_email: '邮箱', form_subject: '主题', form_message: '留言', form_submit: '发送消息',
+                foot_about: '关于', foot_contact: '联系',
+                form_name_ph: '你的姓名', form_email_ph: 'your@email.com', form_subject_ph: '合作咨询 / 技术支持 / 其他', form_message_ph: '请描述你的需求或想法...',
+            },
+            en: {
+                nav_home: 'Home',
+                nav_products: 'Products',
+                nav_about: 'About',
+                nav_contact: 'Contact',
+                hero_title: 'From score to insight.',
+                hero_desc: 'We use technology to serve classical music: making sheet music more accessible, and musical knowledge more searchable and trustworthy.',
+                hero_btn1: 'Explore Our Products',
+                hero_btn2: 'Contact Us',
+                products_label: 'OUR PRODUCTS',
+                products_title: 'Professional Tools for Classical Musicians',
+                sonatex_tagline: 'Professional Score Management · iPad',
+                sonatex_desc: 'SonateX is crafted by a cutting-edge tech team together with front-line professional performers, designed around real pain points in practice and performance with a "1:1 workflow" approach — making page turning, annotation, organization, and retrieval more efficient and reliable.',
+                sonatex_f1: 'Smart Page Turn', sonatex_f2: 'Score Annotation', sonatex_f3: 'Score Management', sonatex_f4: 'Performance Mode', sonatex_f6: 'Classical Music Metadata',
+                master_tagline: 'Music Knowledge & Appreciation · iPhone',
+                master_desc: 'Masternotes brings together a vast collection of high-quality music education and appreciation resources, curated and structured by professional musicians. It supports searching by master, repertoire, and technical topics, while also offering classical music commentary and natural language Q&A for enthusiasts.',
+                master_f1: 'Master Search', master_f2: 'Repertoire Lookup', master_f3: 'Structured Knowledge', master_f4: 'Natural Language Q&A', master_f5: 'Classical Appreciation',
+                about_label: 'ABOUT US',
+                about_title: 'Where Music Meets Technology',
+                about_heading: 'We believe technology can bring music further',
+                about_p1: 'IGNITION MUSIC TECH was founded on a shared passion for music and technology. Our team brings together musicians, engineers, and designers, committed to solving real pain points in the music industry through innovation.',
+                about_p2: 'From intelligent score management to structured music knowledge retrieval, we continuously explore the boundaries between music and technology, empowering performers and enthusiasts alike.',
+                contact_label: 'CONTACT US',
+                contact_title: 'Start Your Music Tech Journey',
+                contact_desc: 'Whether you are an independent musician or a corporate client, we look forward to working with you.',
+                contact_heading: 'Get in Touch',
+                contact_p: 'Have an idea or partnership in mind? Feel free to reach out — our team will respond within 24 hours.',
+                contact_email_label: 'EMAIL',
+                contact_web_label: 'WEBSITE',
+                contact_addr_label: 'ADDRESS',
+                form_name: 'Name', form_email: 'Email', form_subject: 'Subject', form_message: 'Message', form_submit: 'Send Message',
+                foot_about: 'About', foot_contact: 'Contact',
+                form_name_ph: 'Your name', form_email_ph: 'your@email.com', form_subject_ph: 'Partnership / Support / Other', form_message_ph: 'Describe your needs or ideas...',
+            }
+        };
+
+        const placeholderMap = {
+            'form_name': 'form_name_ph',
+            'form_email': 'form_email_ph',
+            'form_subject': 'form_subject_ph',
+            'form_message': 'form_message_ph',
+        };
+
+        function toggleLang() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            document.getElementById('langToggle').textContent = currentLang === 'zh' ? 'EN' : '中';
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[currentLang][key]) {
+                    el.innerHTML = i18n[currentLang][key];
+                }
+                // Update placeholders for form inputs
+                if (placeholderMap[key]) {
+                    const input = el.closest('.form-group')?.querySelector('input, textarea');
+                    if (input) {
+                        input.placeholder = i18n[currentLang][placeholderMap[key]];
+                    }
+                }
+            });
+        }
+
+        // ========== 导航栏滚动效果 ==========
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ========== 移动端菜单 ==========
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // ========== 滚动淡入动画 ==========
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ========== 表单提交 ==========
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.btn-submit');
+            const msg = currentLang === 'zh' ? '已发送 ✓' : 'Sent ✓';
+            const original = i18n[currentLang]['form_submit'];
+            btn.textContent = msg;
+            btn.style.background = '#555';
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.style.background = '';
+                e.target.reset();
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
