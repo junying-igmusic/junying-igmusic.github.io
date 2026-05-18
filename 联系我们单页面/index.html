@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>聯繫我們 · 炎上音樂科技</title>
+<meta name="description" content="聯繫炎上音樂科技——產品合作、功能許願，或任何疑問，我們都樂意聆聽。" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     Sticky navbar
+     ============================================================ -->
+<nav id="navbar">
+  <div id="nav-logo">
+    <a href="../index.html?skip" class="nav-logo-link" aria-label="炎上音樂科技首頁">
+      <img src="../加载动画素材包/ig_logo_solid.svg" alt="炎上音樂科技">
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html?skip" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+    <a href="../Masternotes子页面设计/index.html" data-i18n-zh="Masternotes" data-i18n-en="Masternotes">Masternotes</a>
+  </div>
+  <div class="nav-lang">
+    <button class="lang-pill" id="lang-pill">EN</button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     Contact section
+     ============================================================ -->
+<main class="contact-page">
+  <div class="contact-inner">
+
+    <!-- Left: contact info -->
+    <div class="contact-left">
+      <span class="contact-label" data-i18n-zh="聯繫我們" data-i18n-en="Contact Us">聯繫我們</span>
+      <h1 class="contact-headline">
+        <span data-i18n-zh="有任何問題<br>歡迎隨時聯絡" data-i18n-en="We'd love to hear<br>from you.">有任何問題<br>歡迎隨時聯絡</span>
+      </h1>
+      <p class="contact-subtext" data-i18n-zh="無論是產品合作、功能許願，還是任何疑問，我們都很樂意聆聽。" data-i18n-en="Whether it's a partnership, feature request, or general inquiry — we're always here to listen.">
+        無論是產品合作、功能許願，還是任何疑問，我們都很樂意聆聽。
+      </p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <span class="contact-item-label" data-i18n-zh="電子郵件" data-i18n-en="Email">電子郵件</span>
+          <a href="mailto:info@igmusictech.com" class="contact-item-value">info@igmusictech.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label" data-i18n-zh="商務合作" data-i18n-en="Business">商務合作</span>
+          <a href="mailto:business@igmusictech.com" class="contact-item-value">business@igmusictech.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label" data-i18n-zh="公司所在地" data-i18n-en="Location">公司所在地</span>
+          <span class="contact-item-value" data-i18n-zh="香港" data-i18n-en="Hong Kong">香港</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" id="fl-name">姓名 *</label>
+          <input class="form-input" id="input-name" type="text" placeholder="您的姓名" required>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label" id="fl-email">電子郵件 *</label>
+          <input class="form-input" id="input-email" type="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:16px">
+        <label class="form-label" id="fl-topic">主題</label>
+        <div class="custom-select" id="contact-topic-wrap">
+          <div class="custom-select-trigger" id="contact-topic-trigger">
+            <span class="custom-select-text placeholder" id="contact-topic-text">請選擇主題</span>
+            <svg class="custom-select-chevron" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>
+          </div>
+          <div class="custom-select-dropdown" id="contact-topic-dropdown">
+            <div class="custom-select-option" data-value="" data-i18n-zh="請選擇主題" data-i18n-en="Select a topic">請選擇主題</div>
+            <div class="custom-select-option" data-value="business" data-i18n-zh="商業合作" data-i18n-en="Business Partnership">商業合作</div>
+            <div class="custom-select-option" data-value="feature" data-i18n-zh="功能許願" data-i18n-en="Feature Request">功能許願</div>
+            <div class="custom-select-option" data-value="general" data-i18n-zh="一般查詢" data-i18n-en="General Inquiry">一般查詢</div>
+            <div class="custom-select-option" data-value="trial" data-i18n-zh="試用申請" data-i18n-en="Beta Access">試用申請</div>
+            <div class="custom-select-option" data-value="other" data-i18n-zh="其他" data-i18n-en="Other">其他</div>
+          </div>
+        </div>
+        <input type="hidden" id="contact-topic" value="">
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="label-title">標題 *</label>
+        <input class="form-input" id="contact-title" type="text" placeholder="請簡述您的查詢標題" required>
+      </div>
+      <div class="form-group" style="margin-top:16px">
+        <label class="form-label" id="label-message">訊息 *</label>
+        <textarea class="form-textarea" id="contact-message" placeholder="請輸入您的訊息內容…" required></textarea>
+      </div>
+      <button class="btn-submit" id="btn-submit">發送訊息</button>
+      <p class="form-success" id="form-success" hidden>已收到您的訊息，我們將盡快回覆。♪</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ============================================================
+     Footer
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="../index.html?skip" class="footer-logo">
+      <img src="../加载动画素材包/ig_logo_solid.svg" alt="炎上音樂科技">
+      <span class="footer-logo-name" data-i18n-zh="炎上音樂科技" data-i18n-en="IGNITION MUSICTECH">炎上音樂科技</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="../index.html?skip" data-i18n-zh="官網" data-i18n-en="Home">官網</a></li>
+      <li><a href="../Masternotes子页面设计/index.html" data-i18n-zh="Masternotes" data-i18n-en="Masternotes">Masternotes</a></li>
+      <li><a href="#" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a></li>
+      <li><a href="../privacy.html" data-i18n-zh="法律" data-i18n-en="Legal">法律</a></li>
+    </ul>
+    <p class="footer-copy" data-i18n-zh="© 2026 炎上音樂科技有限公司" data-i18n-en="© 2026 Ignition Musictech Ltd.">© 2026 炎上音樂科技有限公司</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

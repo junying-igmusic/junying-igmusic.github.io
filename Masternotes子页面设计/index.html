@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Masternotes · 大師說</title>
+<meta name="description" content="Masternotes — 為古典樂愛好者打造的 AI 對話夥伴。" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     Sticky compact header
+     ============================================================ -->
+<nav id="navbar">
+  <div id="nav-logo">
+    <a href="../index.html?skip" class="nav-logo-link" aria-label="炎上音樂科技首頁">
+      <img src="../加载动画素材包/ig_logo_solid.svg" alt="炎上音樂科技">
+    </a>
+    <span class="nav-logo-sep">×</span>
+    <span class="nav-logo-product">Masternotes</span>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html?skip" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+    <a href="#waitlist" data-i18n-zh="加入等待名單" data-i18n-en="Join Waitlist">加入等待名單</a>
+  </div>
+  <div class="nav-lang">
+    <button class="lang-pill" id="lang-pill">EN</button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     Page-wide decorative background (subtle pastel blobs + faint music symbols)
+     ============================================================ -->
+<div class="bg-decor" aria-hidden="true">
+  <span class="blob blob--1"></span>
+  <span class="blob blob--2"></span>
+  <span class="blob blob--3"></span>
+  <span class="blob blob--4"></span>
+</div>
+
+<a id="top"></a>
+
+<!-- ============================================================
+     2-COLUMN: left card panel (features) / right sticky iPhone
+     ============================================================ -->
+<section class="hero">
+  <div class="hero__container">
+
+    <!-- LEFT: card panel — starts directly with feature sections -->
+    <aside class="panel">
+      <div class="panel__inner">
+
+        <!-- Hero block — icon + name + slogan + CTA -->
+        <div class="hero-block">
+          <div class="hero-block__brand">
+            <img src="assets/icon.jpg" alt="Masternotes" class="hero-block__icon" />
+            <span class="hero-block__name" data-i18n-zh="大師說" data-i18n-en="Masternotes">大師說</span>
+          </div>
+          <h1 class="hero-block__title">
+            <span class="placeholder-line" data-placeholder="Slogan · 待補">Slogan&nbsp;待補</span>
+          </h1>
+          <p class="hero-block__sub placeholder-text" data-placeholder="副描述 · 待補">
+            Masternotes 是一個專為古典樂愛好者打造的 AI 對話夥伴。把分散的大師班、手稿、訪談與書籍整合於一處——副描述待補
+          </p>
+          <div class="hero-block__ctas">
+            <a href="#waitlist" class="btn btn--primary" data-i18n-zh="加入等待名單" data-i18n-en="Join Waitlist">加入等待名單</a>
+            <a href="#features" class="btn-contact" data-i18n-zh="了解更多" data-i18n-en="Learn more">了解更多</a>
+          </div>
+        </div>
+
+        <!-- Mobile-only product label -->
+        <div class="mobile-product-label" data-i18n-zh="大師說" data-i18n-en="Masternotes">大師說</div>
+
+        <!-- Mobile-only iPhone carousel (peek style) -->
+        <div class="mobile-carousel" id="mobileCarousel" aria-hidden="true"></div>
+
+        <!-- Feature sections -->
+        <div class="features" id="features">
+
+          <article class="feature" data-screen="1">
+            <div class="feature__icon" data-placeholder="icon">
+              <span class="placeholder-icon">①</span>
+            </div>
+            <h2 class="feature__title">主頁 + 歷史記錄</h2>
+            <p class="feature__desc placeholder-text" data-placeholder="描述 · 待補">
+              在這裡放對「主頁 + 歷史記錄」這個功能的描述。你之後一句一句給我替換。
+            </p>
+          </article>
+
+          <article class="feature" data-screen="2">
+            <div class="feature__icon" data-placeholder="icon">
+              <span class="placeholder-icon">②</span>
+            </div>
+            <h2 class="feature__title">AI 對話</h2>
+            <p class="feature__desc placeholder-text" data-placeholder="描述 · 待補">
+              在這裡放對「AI 對話」這個功能的描述。你之後一句一句給我替換。
+            </p>
+          </article>
+
+          <article class="feature" data-screen="3">
+            <div class="feature__icon" data-placeholder="icon">
+              <span class="placeholder-icon">③</span>
+            </div>
+            <h2 class="feature__title">內置連結播放</h2>
+            <p class="feature__desc placeholder-text" data-placeholder="描述 · 待補">
+              在這裡放對「內置連結播放」這個功能的描述。你之後一句一句給我替換。
+            </p>
+          </article>
+
+          <article class="feature" data-screen="4">
+            <div class="feature__icon" data-placeholder="icon">
+              <span class="placeholder-icon">④</span>
+            </div>
+            <h2 class="feature__title">探索抽卡</h2>
+            <p class="feature__desc placeholder-text" data-placeholder="描述 · 待補">
+              左右滑動，隨機跳出帶時間戳的大師影像片段，並由 AI 總結這個時間戳大師講的內容。
+            </p>
+          </article>
+
+        </div>
+
+        <!-- Manifesto / closing text -->
+        <div class="manifesto">
+          <p class="placeholder-text" data-placeholder="品牌宣言 · 待補">
+            以設計與克制為信念，Masternotes 致力於把幾件事做到極致。
+          </p>
+          <p class="placeholder-text" data-placeholder="品牌宣言 · 待補">
+            這就是好軟體該有的樣子——有觀點、有對每個細節的執著。
+          </p>
+        </div>
+
+        <div class="credit" data-i18n-zh="Masternotes · 大師說 · 2026" data-i18n-en="Masternotes · 2026">Masternotes · 大師說 · 2026</div>
+
+      </div>
+    </aside>
+
+    <!-- RIGHT: vertically-centered sticky iPhone -->
+    <div class="stage">
+      <div class="stage__inner">
+        <div class="iphone-wrap">
+
+          <!-- Floating mini-decorations around iPhone -->
+          <span class="float-decor float-decor--note-1" aria-hidden="true">♪</span>
+          <span class="float-decor float-decor--note-2" aria-hidden="true">♫</span>
+          <span class="float-decor float-decor--clef" aria-hidden="true">𝄞</span>
+          <span class="float-decor float-decor--blob-1" aria-hidden="true"></span>
+          <span class="float-decor float-decor--blob-2" aria-hidden="true"></span>
+
+          <!-- iPhone frame -->
+          <div class="iphone" id="iphoneDesktop">
+            <div class="iphone__notch"></div>
+            <div class="iphone__screen">
+
+              <!-- Screen 1: 主頁 + 歷史記錄 -->
+              <div class="screen is-active" data-screen="1">
+                <img src="assets/screen-1.png" alt="主頁 + 歷史記錄" />
+              </div>
+
+              <!-- Screen 2: AI 對話 -->
+              <div class="screen" data-screen="2">
+                <img src="assets/screen-2.png" alt="AI 對話" />
+              </div>
+
+              <!-- Screen 3: 內置連結播放 -->
+              <div class="screen" data-screen="3">
+                <img src="assets/screen-3.png" alt="內置連結播放" />
+              </div>
+
+              <!-- Screen 4: 探索抽卡 (video) -->
+              <div class="screen" data-screen="4">
+                <video src="assets/screen-4.mp4" autoplay loop muted playsinline preload="auto"></video>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Glass reflection beneath iPhone -->
+          <div class="iphone-reflection" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     Demo conversation (separate full-width section)
+     ============================================================ -->
+<section class="demo">
+  <img src="assets/conductor.png" class="demo__conductor" alt="" aria-hidden="true" />
+  <div class="demo__container">
+    <h2 class="section-title" data-i18n-zh="看看一段對話" data-i18n-en="See It In Action">看看一段對話</h2>
+    <p class="section-sub placeholder-text" data-placeholder="副標 · 待補" data-i18n-zh="每個回答都附帶來源——影片、手稿、書籍。" data-i18n-en="Every answer comes with sources — videos, manuscripts, books.">
+      每個回答都附帶來源——影片、手稿、書籍。
+    </p>
+
+    <div class="demo__chat">
+      <div class="bubble bubble--user placeholder-text" data-placeholder="使用者提問 · 待補">
+        How can I understand the polyrhythms in Ave Maria?
+      </div>
+      <div class="bubble bubble--ai">
+        <div class="bubble__avatar"><img src="assets/icon.jpg" alt="" /></div>
+        <div class="bubble__content">
+          <p class="placeholder-text" data-placeholder="AI 回答段 1 · 待補">
+            Understanding the polyrhythms in <em>Ave Maria</em> is less about "spotting a pattern" and more about hearing how the rhythmic layers are allowed to keep their own identity while still sounding like one musical sentence.
+          </p>
+          <p class="placeholder-text" data-placeholder="AI 回答段 2 · 待補">
+            <em>Schoenberg</em> frames a useful listening lens; <em>Paul Lewis</em> adds a tempo-related caution that often matters for polyrhythms.
+          </p>
+          <div class="bubble__sources">
+            <span class="source-chip">📖 The Classical Style</span>
+            <span class="source-chip">🎬 Uchida 大師班 · 12:04</span>
+            <span class="source-chip">📜 手稿 Op.27 No.2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="faq">
+  <div class="faq__container">
+    <h2 class="section-title" data-i18n-zh="常見問題" data-i18n-en="FAQ">常見問題</h2>
+
+    <details class="faq__item">
+      <summary class="placeholder-text" data-placeholder="問題 1 · 待補" data-i18n-zh="Masternotes 跟一般的 ChatGPT 有什麼不同？" data-i18n-en="How is Masternotes different from ChatGPT?">Masternotes 跟一般的 ChatGPT 有什麼不同？</summary>
+      <p class="placeholder-text" data-placeholder="回答 1 · 待補" data-i18n-zh="Masternotes 只專注於古典樂這一個領域，並且建立在我們嚴選的高品質資料庫之上。" data-i18n-en="Masternotes focuses exclusively on classical music, built on a carefully curated high-quality database.">
+        Masternotes 只專注於古典樂這一個領域，並且建立在我們嚴選的高品質資料庫之上。
+      </p>
+    </details>
+
+    <details class="faq__item">
+      <summary class="placeholder-text" data-placeholder="問題 2 · 待補" data-i18n-zh="需要古典樂背景才能用嗎？" data-i18n-en="Do I need a classical music background?">需要古典樂背景才能用嗎？</summary>
+      <p class="placeholder-text" data-placeholder="回答 2 · 待補" data-i18n-zh="完全不需要。你可以問純情感的問題，也可以問學術問題。AI 會調整回答的深度。" data-i18n-en="Not at all. You can ask purely emotional questions or deeply academic ones. The AI adjusts its depth accordingly.">
+        完全不需要。你可以問純情感的問題，也可以問學術問題。AI 會調整回答的深度。
+      </p>
+    </details>
+
+    <details class="faq__item">
+      <summary class="placeholder-text" data-placeholder="問題 3 · 待補" data-i18n-zh="支援哪些語言？" data-i18n-en="Which languages are supported?">支援哪些語言？</summary>
+      <p class="placeholder-text" data-placeholder="回答 3 · 待補" data-i18n-zh="介面支援繁體中文、簡體中文、英文。底層資料庫包含中、英、德、法、義多語素材。" data-i18n-en="The interface supports Traditional Chinese, Simplified Chinese, and English. The database includes materials in Chinese, English, German, French, and Italian.">
+        介面支援繁體中文、簡體中文、英文。底層資料庫包含中、英、德、法、義多語素材。
+      </p>
+    </details>
+
+    <details class="faq__item">
+      <summary class="placeholder-text" data-placeholder="問題 4 · 待補" data-i18n-zh="什麼時候上架？" data-i18n-en="When will it launch?">什麼時候上架？</summary>
+      <p class="placeholder-text" data-placeholder="回答 4 · 待補" data-i18n-zh="即將在 App Store 上架。留下你的 email，我們會第一時間通知你。" data-i18n-en="Coming soon to the App Store. Leave your email and we'll notify you the moment it's live.">
+        即將在 App Store 上架。留下你的 email，我們會第一時間通知你。
+      </p>
+    </details>
+
+    <details class="faq__item">
+      <summary class="placeholder-text" data-placeholder="問題 5 · 待補" data-i18n-zh="會收集我的資料嗎？" data-i18n-en="Do you collect my data?">會收集我的資料嗎？</summary>
+      <p class="placeholder-text" data-placeholder="回答 5 · 待補" data-i18n-zh="我們不使用任何第三方分析服務。你的對話只用於改善 AI 的回應品質，不會被共享或出售。" data-i18n-en="We don't use any third-party analytics. Your conversations are only used to improve AI response quality — never shared or sold.">
+        我們不使用任何第三方分析服務。你的對話只用於改善 AI 的回應品質，不會被共享或出售。
+      </p>
+    </details>
+  </div>
+</section>
+
+<!-- ============================================================
+     Waitlist
+     ============================================================ -->
+<section class="waitlist" id="waitlist">
+  <div class="waitlist__container">
+    <h2 class="section-title" data-i18n-zh="加入等待名單" data-i18n-en="Join the Waitlist">加入等待名單</h2>
+    <p class="section-sub placeholder-text" data-placeholder="副標 · 待補" data-i18n-zh="上架時，我們會親自寄信通知你。" data-i18n-en="We'll reach out personally when we launch.">
+      上架時，我們會親自寄信通知你。
+    </p>
+    <form class="waitlist__form" id="waitlistForm" novalidate>
+      <input type="email" class="waitlist__input" placeholder="you@example.com" required />
+      <button type="submit" class="btn btn--primary" data-i18n-zh="通知我" data-i18n-en="Notify Me">通知我</button>
+    </form>
+    <p class="waitlist__success" id="waitlistSuccess" hidden>已收到，敬請期待 ♪</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     Footer
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="../index.html?skip" class="footer-logo">
+      <img src="../加载动画素材包/ig_logo_solid.svg" alt="炎上音樂科技">
+      <span class="footer-logo-name" data-i18n-zh="炎上音樂科技" data-i18n-en="IGNITION MUSICTECH">炎上音樂科技</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="#features" data-i18n-zh="功能" data-i18n-en="Features">功能</a></li>
+      <li><a href="#waitlist" data-i18n-zh="等待名單" data-i18n-en="Waitlist">等待名單</a></li>
+      <li><a href="../联系我们单页面/index.html" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a></li>
+      <li><a href="../index.html?skip" data-i18n-zh="官網" data-i18n-en="Home">官網</a></li>
+      <li><a href="../privacy.html" data-i18n-zh="法律" data-i18n-en="Legal">法律</a></li>
+    </ul>
+    <p class="footer-copy" data-i18n-zh="© 2026 炎上音樂科技有限公司" data-i18n-en="© 2026 Ignition Musictech Ltd.">© 2026 炎上音樂科技有限公司</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
