@@ -1605,6 +1605,22 @@
       .mobile-nav   { display: flex; }
       #navbar       { padding: 0 20px; }
       .hero-content { padding: 0 28px; width: 100%; }
+
+      /* Products — stack cards vertically */
+      .products-inner { padding: 0 20px; }
+      .products-grid  { grid-template-columns: 1fr; gap: 16px; }
+      .card-masternotes .card-visual-wrapper,
+      .card-sonatex    .card-visual-wrapper { height: 280px; overflow: hidden; }
+
+      /* Wish button — pull out of absolute positioning */
+      .btn-wish {
+        position: static;
+        transform: none;
+        display: table;
+        margin: 16px auto 0;
+        white-space: normal;
+        text-align: center;
+      }
     }
 
   </style>
