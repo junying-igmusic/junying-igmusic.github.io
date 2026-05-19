@@ -560,3 +560,22 @@ a.contact-item-value:hover { color: #000; }
   .mobile-nav   { display: flex; }
   #navbar       { padding: 0 20px; }
 }
+
+/* ── Remove all hover effects on touch devices ── */
+@media (hover: none) {
+  .nav-logo-link:hover              { transform: none; }
+  .nav-links a:hover                { opacity: 1; }
+  .lang-pill:hover {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.12);
+    color: rgba(0,0,0,0.65);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
+  }
+  a.contact-item-value:hover        { color: rgba(0,0,0,0.72); }
+  .custom-select-trigger:hover      { border-color: rgba(0,0,0,0.08); }
+  .custom-select-option:hover       { background: transparent; color: rgba(0,0,0,0.65); }
+  .btn-submit:hover                 { background: #000; transform: none; }
+  .btn-submit:hover::before         { opacity: 0; animation: none; }
+  .footer-links a:hover             { color: rgba(255,255,255,0.4); }
+  .mobile-nav-link:hover            { opacity: 1 !important; }
+}

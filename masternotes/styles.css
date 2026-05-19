@@ -1189,3 +1189,32 @@ img, video { display: block; max-width: 100%; }
   .mobile-nav   { display: flex; }
   #navbar       { padding: 0 20px; }
 }
+
+/* ── Remove all hover effects on touch devices ── */
+@media (hover: none) {
+  .nav-logo-link:hover                       { transform: none; }
+  .nav-links a:hover                         { opacity: 1; }
+  .nav-item:hover .nav-dropdown              { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-6px); }
+  .nav-dropdown a:hover                      { background: transparent; }
+  .lang-pill:hover {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.12);
+    color: rgba(0,0,0,0.65);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
+  }
+  .btn--primary:hover                        { background: var(--text); transform: none; }
+  .btn--primary:hover::after                 { left: -75%; transition: left 0s; }
+  .btn-contact:hover {
+    background: rgba(255,255,255,0.28);
+    border-color: rgba(0,0,0,0.12);
+    transform: none;
+  }
+  .btn-contact:hover::after                  { opacity: 0; transform: translateX(-6px); margin-left: 0; }
+  .btn--link:hover                           { opacity: 1; }
+  .btn--mini:hover                           { transform: none; }
+  .hero-block__icon:hover                    { transform: none; }
+  .hero-block__icon:hover + .hero-block__name { opacity: 1; transform: none; }
+  .faq__item:hover                           { transform: none; }
+  .footer-links a:hover                      { color: rgba(255,255,255,0.4); }
+  .mobile-nav-link:hover                     { opacity: 1 !important; }
+}
