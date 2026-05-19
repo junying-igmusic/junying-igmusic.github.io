@@ -1814,7 +1814,10 @@
               <div class="card-visual-front">
                 <div class="ipad-frame">
                   <div class="ipad-screen">
-                    <img src="Frame 139.png" alt="SonateX">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="Frame 139-handy.png">
+                      <img src="Frame 139.png" alt="SonateX">
+                    </picture>
                   </div>
                 </div>
               </div>
@@ -2219,6 +2222,15 @@
     });
 
     // Mobile hamburger menu
+    // Swap SonateX card image for mobile/desktop based on viewport width
+    const sonatexImg = document.querySelector('.card-sonatex .ipad-screen picture img');
+    const swapSonatexImg = () => {
+      if (!sonatexImg) return;
+      sonatexImg.src = window.innerWidth <= 768 ? 'Frame 139-handy.png' : 'Frame 139.png';
+    };
+    swapSonatexImg();
+    window.addEventListener('resize', swapSonatexImg, { passive: true });
+
     const mobileNav    = document.getElementById('mobile-nav');
     const navMenuBtn   = document.getElementById('nav-menu-btn');
     if (navMenuBtn && mobileNav) {
