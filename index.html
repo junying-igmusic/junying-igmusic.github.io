@@ -1623,10 +1623,10 @@
       }
       .card-masternotes .iphone-screen { border-radius: 22px; }
 
-      /* SonateX — portrait iPad on mobile, full screenshot (no crop) */
+      /* SonateX — let screenshot's natural ratio dictate the frame shape */
       .card-sonatex .ipad-frame { width: 260px; max-width: none; }
-      .card-sonatex .ipad-screen { aspect-ratio: 3/4; }
-      .card-sonatex .ipad-screen img { object-fit: contain; object-position: center; }
+      .card-sonatex .ipad-screen { aspect-ratio: auto; }
+      .card-sonatex .ipad-screen img { height: auto; object-fit: initial; object-position: initial; }
 
       /* Contact section — stack columns */
       .contact-inner { grid-template-columns: 1fr; gap: 40px; }
