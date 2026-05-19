@@ -1897,7 +1897,7 @@
       navLogo.style.opacity  = '1';
       navLinks.style.opacity = '1';
       navLang.style.opacity  = '1';
-      history.replaceState(null, '', location.pathname + location.hash);
+      history.replaceState(null, '', '/' + (location.hash || ''));
     }
 
     // ── Language switch ──
