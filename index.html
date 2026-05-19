@@ -1844,7 +1844,8 @@
           <label class="form-label" id="label-message">訊息 *</label>
           <textarea class="form-textarea" id="contact-message" placeholder="請輸入您的訊息內容…" required></textarea>
         </div>
-        <button class="btn-submit" data-i18n="btn-submit">發送訊息</button>
+        <button class="btn-submit" id="btn-submit-contact" data-i18n="btn-submit">發送訊息</button>
+        <p class="form-success" id="form-success-contact" hidden>已收到您的訊息，我們將盡快回覆。♪</p>
       </div>
 
     </div>
@@ -2474,6 +2475,52 @@ void main() {
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     setTimeout(() => setTopic('trial', i18n[currentLang]['opt-trial']), 600);
   });
+
+  // ── Contact form — Web3Forms submission ──
+  const btnSubmitContact  = document.getElementById('btn-submit-contact');
+  const formSuccessContact = document.getElementById('form-success-contact');
+
+  if (btnSubmitContact) {
+    btnSubmitContact.addEventListener('click', async () => {
+      const nameVal    = document.getElementById('input-name').value.trim();
+      const emailVal   = document.getElementById('input-email').value.trim();
+      const titleVal   = document.getElementById('contact-title').value.trim();
+      const messageVal = document.getElementById('contact-message').value.trim();
+      if (!nameVal || !emailVal) {
+        document.getElementById(nameVal ? 'input-email' : 'input-name').focus();
+        return;
+      }
+      btnSubmitContact.disabled = true;
+      btnSubmitContact.textContent = currentLang === 'zh' ? '發送中…' : 'Sending…';
+      try {
+        const res  = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: '614529d3-920b-4df1-a9e7-40d8e639bcd6',
+            name: nameVal, email: emailVal,
+            topic: selectHidden.value, subject: titleVal, message: messageVal,
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          btnSubmitContact.textContent = currentLang === 'zh' ? '已發送 ✓' : 'Sent ✓';
+          if (formSuccessContact) {
+            formSuccessContact.textContent = currentLang === 'zh'
+              ? '已收到您的訊息，我們將盡快回覆。♪'
+              : "Message received — we'll be in touch soon. ♪";
+            formSuccessContact.hidden = false;
+          }
+        } else {
+          btnSubmitContact.disabled = false;
+          btnSubmitContact.textContent = currentLang === 'zh' ? '發送訊息' : 'Send Message';
+        }
+      } catch(e) {
+        btnSubmitContact.disabled = false;
+        btnSubmitContact.textContent = currentLang === 'zh' ? '發送訊息' : 'Send Message';
+      }
+    });
+  }
 
   // Restore saved language — must run after selectHidden is declared
   try {

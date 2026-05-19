@@ -191,21 +191,42 @@
   const btnSubmit = document.getElementById('btn-submit');
 
   if (form && btnSubmit) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      btnSubmit.disabled = true;
-      btnSubmit.textContent = '已發送';
-      if (success) {
-        success.textContent = i18n[currentLang]['form-success'];
-        success.hidden = false;
+    btnSubmit.addEventListener('click', async () => {
+      const nameVal    = document.getElementById('input-name').value.trim();
+      const emailVal   = document.getElementById('input-email').value.trim();
+      const titleVal   = document.getElementById('contact-title').value.trim();
+      const messageVal = document.getElementById('contact-message').value.trim();
+      if (!nameVal || !emailVal) {
+        document.getElementById(nameVal ? 'input-email' : 'input-name').focus();
+        return;
       }
-    });
-
-    btnSubmit.addEventListener('click', (e) => {
-      if (form.checkValidity()) {
-        form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-      } else {
-        form.reportValidity();
+      btnSubmit.disabled = true;
+      btnSubmit.textContent = currentLang === 'zh' ? '發送中…' : 'Sending…';
+      try {
+        const res  = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: '614529d3-920b-4df1-a9e7-40d8e639bcd6',
+            name: nameVal, email: emailVal,
+            topic: selectHidden ? selectHidden.value : '',
+            subject: titleVal, message: messageVal,
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          btnSubmit.textContent = currentLang === 'zh' ? '已發送 ✓' : 'Sent ✓';
+          if (success) {
+            success.textContent = i18n[currentLang]['form-success'];
+            success.hidden = false;
+          }
+        } else {
+          btnSubmit.disabled = false;
+          btnSubmit.textContent = i18n[currentLang]['btn-submit'];
+        }
+      } catch(e) {
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = i18n[currentLang]['btn-submit'];
       }
     });
   }

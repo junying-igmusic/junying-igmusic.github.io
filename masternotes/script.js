@@ -267,17 +267,38 @@
   const form    = document.getElementById('waitlistForm');
   const success = document.getElementById('waitlistSuccess');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = form.querySelector('input[type="email"]').value.trim();
+      const emailInput = form.querySelector('input[type="email"]');
+      const email = emailInput.value.trim();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        form.querySelector('input').focus();
+        emailInput.focus();
         return;
       }
-      form.hidden = true;
-      if (success) {
-        success.hidden = false;
-        success.textContent = i18n[currentLang]['waitlist-success'];
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = currentLang === 'zh' ? '送出中…' : 'Sending…'; }
+      try {
+        const res  = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: '614529d3-920b-4df1-a9e7-40d8e639bcd6',
+            email,
+            subject: 'Masternotes Waitlist',
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.hidden = true;
+          if (success) {
+            success.hidden = false;
+            success.textContent = i18n[currentLang]['waitlist-success'];
+          }
+        } else {
+          if (btn) { btn.disabled = false; btn.textContent = i18n[currentLang]['waitlist-submit']; }
+        }
+      } catch(e) {
+        if (btn) { btn.disabled = false; btn.textContent = i18n[currentLang]['waitlist-submit']; }
       }
     });
   }
