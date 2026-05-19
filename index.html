@@ -375,6 +375,18 @@
       to   { --sweep-angle: 270deg; }
     }
 
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      18%      { transform: translateX(-6px); }
+      36%      { transform: translateX(6px); }
+      54%      { transform: translateX(-4px); }
+      72%      { transform: translateX(4px); }
+    }
+    .field-shake {
+      animation: shake 0.42s ease;
+      border-color: rgba(220, 60, 60, 0.55) !important;
+    }
+
     /* 联系我们 — light gray border pill */
     .btn-contact {
       display: inline-block;
@@ -2491,15 +2503,33 @@ void main() {
   const btnSubmitContact  = document.getElementById('btn-submit-contact');
   const formSuccessContact = document.getElementById('form-success-contact');
 
+  function shakeInvalid() {
+    const fields = [
+      document.getElementById('input-name'),
+      document.getElementById('input-email'),
+      document.getElementById('contact-title'),
+      document.getElementById('contact-message'),
+    ];
+    let invalid = false;
+    fields.forEach(el => {
+      if (el && el.required && !el.value.trim()) {
+        invalid = true;
+        el.classList.remove('field-shake');
+        void el.offsetWidth;
+        el.classList.add('field-shake');
+        el.addEventListener('animationend', () => el.classList.remove('field-shake'), { once: true });
+      }
+    });
+    return invalid;
+  }
+
   if (btnSubmitContact) {
     btnSubmitContact.addEventListener('click', async () => {
-      const emailEl    = document.getElementById('input-email');
-      const nameVal    = nameInputContact.value.trim();
-      const emailVal   = emailEl.value.trim();
-      const titleVal   = document.getElementById('contact-title').value.trim();
-      const messageVal = document.getElementById('contact-message').value.trim();
-      if (!emailVal) { emailEl.focus(); return; }
-      if (nameInputContact.required && !nameVal) { nameInputContact.focus(); return; }
+      if (shakeInvalid()) return;
+      const nameVal    = nameInputContact ? nameInputContact.value.trim() : '';
+      const emailVal   = document.getElementById('input-email').value.trim();
+      const titleVal   = titleInput ? titleInput.value.trim() : '';
+      const messageVal = messageArea ? messageArea.value.trim() : '';
       btnSubmitContact.disabled = true;
       btnSubmitContact.textContent = currentLang === 'zh' ? '發送中…' : 'Sending…';
       try {

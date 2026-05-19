@@ -13,6 +13,18 @@
   to   { --sweep-angle: 270deg; }
 }
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  18%      { transform: translateX(-6px); }
+  36%      { transform: translateX(6px); }
+  54%      { transform: translateX(-4px); }
+  72%      { transform: translateX(4px); }
+}
+.field-shake {
+  animation: shake 0.42s ease;
+  border-color: rgba(220, 60, 60, 0.55) !important;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {

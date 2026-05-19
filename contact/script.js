@@ -198,16 +198,33 @@
   const success = document.getElementById('form-success');
   const btnSubmit = document.getElementById('btn-submit');
 
+  function shakeInvalid() {
+    const fields = [
+      document.getElementById('input-name'),
+      document.getElementById('input-email'),
+      document.getElementById('contact-title'),
+      document.getElementById('contact-message'),
+    ];
+    let invalid = false;
+    fields.forEach(el => {
+      if (el && el.required && !el.value.trim()) {
+        invalid = true;
+        el.classList.remove('field-shake');
+        void el.offsetWidth;
+        el.classList.add('field-shake');
+        el.addEventListener('animationend', () => el.classList.remove('field-shake'), { once: true });
+      }
+    });
+    return invalid;
+  }
+
   if (form && btnSubmit) {
     btnSubmit.addEventListener('click', async () => {
-      const nameEl     = document.getElementById('input-name');
-      const emailEl    = document.getElementById('input-email');
-      const nameVal    = nameEl.value.trim();
-      const emailVal   = emailEl.value.trim();
-      const titleVal   = document.getElementById('contact-title').value.trim();
-      const messageVal = document.getElementById('contact-message').value.trim();
-      if (!emailVal) { emailEl.focus(); return; }
-      if (nameEl.required && !nameVal) { nameEl.focus(); return; }
+      if (shakeInvalid()) return;
+      const nameVal    = nameInput ? nameInput.value.trim() : '';
+      const emailVal   = document.getElementById('input-email').value.trim();
+      const titleVal   = titleInput ? titleInput.value.trim() : '';
+      const messageVal = messageArea ? messageArea.value.trim() : '';
       btnSubmit.disabled = true;
       btnSubmit.textContent = currentLang === 'zh' ? '發送中…' : 'Sending…';
       try {
