@@ -13,12 +13,16 @@
       if (val !== undefined) el.innerHTML = val;
     });
 
+    // Bilingual long-form doc sections
+    document.querySelectorAll('.doc-content').forEach((el) => {
+      el.classList.toggle('is-active', el.dataset.lang === lang);
+    });
+
     document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
 
     const pill = document.getElementById('lang-pill');
     if (pill) pill.textContent = lang === 'zh' ? 'EN' : '繁體';
 
-    // Update page title if data-title-zh/en are set on <html>
     const titleZh = document.documentElement.dataset.titleZh;
     const titleEn = document.documentElement.dataset.titleEn;
     if (titleZh && titleEn) document.title = lang === 'zh' ? titleZh : titleEn;

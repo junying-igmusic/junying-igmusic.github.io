@@ -293,6 +293,53 @@ body {
 /* Termly iframe fills the card */
 .legal-doc__body iframe { width: 100%; border: none; min-height: 600px; }
 
+/* ── Document body typography ─────────────────────────────── */
+.doc-content { display: none; }
+.doc-content.is-active { display: block; }
+
+.doc-content h2 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 36px 0 10px;
+  color: var(--ink);
+}
+.doc-content h2:first-child { margin-top: 0; }
+
+.doc-content p {
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+}
+
+.doc-content ul, .doc-content ol {
+  margin: 0 0 14px 20px;
+  color: var(--ink-soft);
+}
+.doc-content li { margin-bottom: 6px; }
+
+.doc-content a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.doc-content a:hover { color: rgba(0,0,0,0.55); }
+
+.doc-content strong { color: var(--ink); font-weight: 600; }
+
+.doc-content .doc-meta {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.doc-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
 /* ── Footer ───────────────────────────────────────────────── */
 #footer {
   margin-top: auto;
