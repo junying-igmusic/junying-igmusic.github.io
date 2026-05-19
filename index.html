@@ -1613,15 +1613,24 @@
       .card-masternotes .card-visual-wrapper,
       .card-sonatex    .card-visual-wrapper { height: 280px; overflow: hidden; }
 
-      /* Wish button — pull out of absolute positioning */
+      /* Masternotes — shrink iPhone to fit 280px wrapper (36px top padding → 244px room) */
+      .card-masternotes .iphone-frame { width: 115px; max-width: none; }
+
+      /* SonateX — portrait iPad on mobile */
+      .card-sonatex .ipad-frame { width: 178px; max-width: none; }
+      .card-sonatex .ipad-screen { aspect-ratio: 3/4; }
+
+      /* Wish button — pull out of absolute positioning, center in grid column */
       .btn-wish {
         position: static;
         transform: none;
-        display: table;
+        display: flex;
         margin: 16px auto 0;
-        white-space: normal;
-        text-align: center;
+        font-size: 14px;
+        padding: 11px 22px;
+        white-space: nowrap;
       }
+      .btn-wish:hover { transform: scale(1.04); }
     }
 
   </style>
