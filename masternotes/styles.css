@@ -1068,19 +1068,21 @@ img, video { display: block; max-width: 100%; }
     display: flex;
     gap: 14px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     scroll-padding: 0 calc(50% - 130px);
     padding: 16px calc(50% - 130px);
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
   }
   .mobile-carousel__track::-webkit-scrollbar { display: none; }
   .mobile-carousel__slide {
     flex: 0 0 260px;
     scroll-snap-align: center;
     transform: scale(0.92);
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity   0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0.5;
+    will-change: transform;
   }
   .mobile-carousel__slide.is-active {
     transform: scale(1);

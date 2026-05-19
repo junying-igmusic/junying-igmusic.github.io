@@ -242,9 +242,12 @@
 
     const scrollTo = (idx) => {
       const all = slides();
-      if (all[idx]) {
-        all[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
+      if (!all[idx]) return;
+      const slide = all[idx];
+      const trackRect = track.getBoundingClientRect();
+      const slideRect = slide.getBoundingClientRect();
+      const offset = slideRect.left - trackRect.left - (track.clientWidth - slide.offsetWidth) / 2;
+      track.scrollBy({ left: offset, behavior: 'smooth' });
     };
 
     prev.addEventListener('click', () => scrollTo(Math.max(0, getActiveIdx() - 1)));
@@ -252,13 +255,13 @@
       scrollTo(Math.min(slides().length - 1, getActiveIdx() + 1));
     });
 
-    let t;
+    let rafId;
     track.addEventListener('scroll', () => {
-      clearTimeout(t);
-      t = setTimeout(() => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
         const idx = getActiveIdx();
         slides().forEach((s, i) => s.classList.toggle('is-active', i === idx));
-      }, 80);
+      });
     }, { passive: true });
 
     // Scroll first slide into view
