@@ -1911,7 +1911,7 @@
         'contact-headline': '有任何問題<br>歡迎隨時聯絡',
         'contact-subtext': '無論是產品合作、功能許願，還是任何疑問，我們都很樂意聆聽。',
         'ci-email': '電子郵件', 'ci-business': '商務合作', 'ci-location': '公司所在地', 'ci-hk': '香港',
-        'fl-name': '姓名 *', 'fl-email': '電子郵件 *', 'fl-topic': '主題',
+        'fl-name': '姓名 *', 'fl-name-opt': '姓名', 'fl-email': '電子郵件 *', 'fl-topic': '主題',
         'label-title-req': '標題 *', 'label-title-opt': '標題',
         'label-message-req': '訊息 *', 'label-message-opt': '訊息',
         'ph-name': '您的姓名', 'ph-title': '請簡述您的查詢標題',
@@ -1943,7 +1943,7 @@
         'contact-headline': 'We\'d love to hear from you.',
         'contact-subtext': 'Whether it\'s a partnership, feature request, or general inquiry — we\'re always here to listen.',
         'ci-email': 'Email', 'ci-business': 'Business', 'ci-location': 'Location', 'ci-hk': 'Hong Kong',
-        'fl-name': 'Name *', 'fl-email': 'Email *', 'fl-topic': 'Topic',
+        'fl-name': 'Name *', 'fl-name-opt': 'Name', 'fl-email': 'Email *', 'fl-topic': 'Topic',
         'label-title-req': 'Subject *', 'label-title-opt': 'Subject',
         'label-message-req': 'Message *', 'label-message-opt': 'Message',
         'ph-name': 'Your name', 'ph-title': 'Brief subject of your inquiry',
@@ -2014,12 +2014,8 @@
         if (key && t[key] !== undefined) el.textContent = t[key];
       });
 
-      // Textarea placeholder (respects trial mode)
-      const isTrial = selectHidden.value === 'trial';
-      document.getElementById('contact-message').placeholder = isTrial ? t['ph-trial'] : t['ph-message'];
-
-      // Trial mode labels (re-apply in current lang)
-      applyTrialMode(isTrial);
+      // Topic mode labels (re-apply in current lang)
+      applyTopicMode(selectHidden.value);
 
       // Update pill label to show the OTHER language
       const pill = document.getElementById('lang-pill');
@@ -2446,7 +2442,7 @@ void main() {
     selectText.classList.toggle('placeholder', !value);
     selectOptions.forEach(o => o.classList.toggle('selected', o.dataset.value === value));
     selectWrap.classList.remove('open');
-    applyTrialMode(value === 'trial');
+    applyTopicMode(value);
   }
 
   selectOptions.forEach(option => {
@@ -2455,19 +2451,25 @@ void main() {
     });
   });
 
-  // ── Trial form logic ──
+  // ── Topic form logic ──
+  const nameInputContact = document.getElementById('input-name');
   const titleInput   = document.getElementById('contact-title');
   const messageArea  = document.getElementById('contact-message');
   const labelTitle   = document.getElementById('label-title');
   const labelMessage = document.getElementById('label-message');
 
-  function applyTrialMode(isTrial) {
+  function applyTopicMode(topic) {
     const t = i18n[currentLang];
-    titleInput.required   = !isTrial;
-    messageArea.required  = !isTrial;
-    labelTitle.textContent   = isTrial ? t['label-title-opt']   : t['label-title-req'];
-    labelMessage.textContent = isTrial ? t['label-message-opt'] : t['label-message-req'];
-    messageArea.placeholder  = isTrial ? t['ph-trial'] : t['ph-message'];
+    const nameOpt    = topic === 'feature' || topic === 'general' || topic === 'trial';
+    const titleOpt   = topic === 'feature' || topic === 'general' || topic === 'trial';
+    const messageOpt = topic === 'trial';
+    nameInputContact.required = !nameOpt;
+    titleInput.required       = !titleOpt;
+    messageArea.required      = !messageOpt;
+    messageArea.placeholder   = topic === 'trial' ? t['ph-trial'] : t['ph-message'];
+    document.getElementById('fl-name').textContent = nameOpt ? t['fl-name-opt'] : t['fl-name'];
+    labelTitle.textContent   = titleOpt   ? t['label-title-opt']   : t['label-title-req'];
+    labelMessage.textContent = messageOpt ? t['label-message-opt'] : t['label-message-req'];
   }
 
   document.getElementById('btn-trial').addEventListener('click', (e) => {
@@ -2482,14 +2484,13 @@ void main() {
 
   if (btnSubmitContact) {
     btnSubmitContact.addEventListener('click', async () => {
-      const nameVal    = document.getElementById('input-name').value.trim();
-      const emailVal   = document.getElementById('input-email').value.trim();
+      const emailEl    = document.getElementById('input-email');
+      const nameVal    = nameInputContact.value.trim();
+      const emailVal   = emailEl.value.trim();
       const titleVal   = document.getElementById('contact-title').value.trim();
       const messageVal = document.getElementById('contact-message').value.trim();
-      if (!nameVal || !emailVal) {
-        document.getElementById(nameVal ? 'input-email' : 'input-name').focus();
-        return;
-      }
+      if (!emailVal) { emailEl.focus(); return; }
+      if (nameInputContact.required && !nameVal) { nameInputContact.focus(); return; }
       btnSubmitContact.disabled = true;
       btnSubmitContact.textContent = currentLang === 'zh' ? '發送中…' : 'Sending…';
       try {
