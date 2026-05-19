@@ -1556,6 +1556,50 @@
       white-space: nowrap;
     }
 
+    /* ── Mobile nav ── */
+    .nav-menu-btn { display: none; margin-left: 8px; padding: 5px 12px; }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      z-index: 49;
+      flex-direction: column;
+      padding: 8px 0 12px;
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .mobile-nav.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .mobile-nav-link {
+      display: block;
+      padding: 13px 28px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #000 !important;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      opacity: 1 !important;
+      transition: opacity 0.15s ease;
+    }
+    .mobile-nav-link:hover { opacity: 0.45 !important; }
+
+    @media (max-width: 768px) {
+      .nav-links    { display: none !important; }
+      .nav-menu-btn { display: flex; align-items: center; }
+      .mobile-nav   { display: flex; }
+      #navbar       { padding: 0 20px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1593,8 +1637,22 @@
     </div>
     <div class="nav-lang">
       <button class="lang-pill" id="lang-pill">EN</button>
+      <button class="lang-pill nav-menu-btn" id="nav-menu-btn" aria-label="選單">
+        <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="14" height="1.5" rx="0.75" fill="currentColor"/>
+          <rect y="4.75" width="14" height="1.5" rx="0.75" fill="currentColor"/>
+          <rect y="9.5" width="14" height="1.5" rx="0.75" fill="currentColor"/>
+        </svg>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile nav menu -->
+  <div id="mobile-nav" class="mobile-nav">
+    <a href="#" data-i18n="nav-home" class="mobile-nav-link">首頁</a>
+    <a href="masternotes/" class="mobile-nav-link">Masternotes</a>
+    <a href="#contact" class="mobile-nav-link" data-i18n="nav-contact">聯繫我們</a>
+  </div>
 
   <!-- Hero -->
   <div id="hero">
@@ -2057,6 +2115,24 @@
     document.getElementById('lang-pill').addEventListener('click', () => {
       setLang(currentLang === 'zh' ? 'en' : 'zh');
     });
+
+    // Mobile hamburger menu
+    const mobileNav    = document.getElementById('mobile-nav');
+    const navMenuBtn   = document.getElementById('nav-menu-btn');
+    if (navMenuBtn && mobileNav) {
+      navMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileNav.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target) && e.target !== navMenuBtn) {
+          mobileNav.classList.remove('open');
+        }
+      });
+      mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => mobileNav.classList.remove('open'));
+      });
+    }
 
     let savedRect = null;
 
