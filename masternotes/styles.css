@@ -1151,6 +1151,7 @@ img, video { display: block; max-width: 100%; }
 
   .music-symbol { display: none; }
   .mini-header__url { display: none; }
+  .demo__conductor { display: none; }
 }
 
 @media (max-width: 480px) {
