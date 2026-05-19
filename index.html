@@ -502,6 +502,8 @@
       margin-right: 7px;
     }
 
+    .wish-text-mobile { display: none; }
+
     .wish-star {
       display: inline-flex;
       align-items: center;
@@ -1633,6 +1635,11 @@
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
       .footer-links { flex-wrap: wrap; gap: 8px 0; }
 
+      /* Wish button — show mobile text + star, hide desktop text */
+      .wish-text-desktop { display: none; }
+      .wish-text-mobile  { display: inline; }
+      .wish-star-wrap    { width: 1em; opacity: 1; margin-right: 7px; }
+
       /* Wish button — pull out of absolute positioning, center in grid column */
       .btn-wish {
         position: static;
@@ -1833,7 +1840,7 @@
           </div>
         </div>
 
-        <a href="#contact" class="btn-wish"><span class="wish-star-wrap"><span class="wish-star">✦</span></span><span data-i18n="btn-wish-text"> 有想要的功能？向我們許願</span></a>
+        <a href="#contact" class="btn-wish"><span class="wish-star-wrap"><span class="wish-star">✦</span></span><span class="wish-text-desktop" data-i18n="btn-wish-text"> 有想要的功能？向我們許願</span><span class="wish-text-mobile" data-i18n="btn-wish-text-short"> 有想要的功能？</span></a>
       </div>
     </div>
   </section>
@@ -2085,7 +2092,7 @@
         // Products
         'tag-masternotes': '音樂教育 AI', 'tag-sonatex': '曲譜管理',
         'btn-trial': '加入試用名單', 'btn-coming-soon': '敬請期待',
-        'btn-wish-text': ' 有想要的功能？向我們許願',
+        'btn-wish-text': ' 有想要的功能？向我們許願', 'btn-wish-text-short': ' 有想要的功能？',
         // About
         'about-label': '關於我們',
         // Contact
@@ -2117,7 +2124,7 @@
         // Products
         'tag-masternotes': 'AI Music Education', 'tag-sonatex': 'Score Management',
         'btn-trial': 'Join Waitlist', 'btn-coming-soon': 'Coming Soon',
-        'btn-wish-text': ' Have a feature request? Make a wish',
+        'btn-wish-text': ' Have a feature request? Make a wish', 'btn-wish-text-short': ' Have a feature request?',
         // About
         'about-label': 'About Us',
         // Contact
