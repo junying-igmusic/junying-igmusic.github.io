@@ -1900,8 +1900,12 @@
     const flyLogo   = document.getElementById('flying-logo');
     const logoSolid = document.getElementById('logo-solid');
 
-    // Skip loading animation when navigating back from a subpage
+    // Skip loading animation after first visit (refresh or back-navigation)
+    const skipLoader = sessionStorage.getItem('ig_visited') || new URLSearchParams(location.search).has('skip');
     if (new URLSearchParams(location.search).has('skip')) {
+      history.replaceState(null, '', '/' + (location.hash || ''));
+    }
+    if (skipLoader) {
       loader.style.display  = 'none';
       flyLogo.style.display = 'none';
       hero.classList.add('open');
@@ -1909,7 +1913,8 @@
       navLogo.style.opacity  = '1';
       navLinks.style.opacity = '1';
       navLang.style.opacity  = '1';
-      history.replaceState(null, '', '/' + (location.hash || ''));
+    } else {
+      sessionStorage.setItem('ig_visited', '1');
     }
 
     // ── Language switch ──
