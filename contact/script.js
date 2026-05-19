@@ -108,6 +108,15 @@
   const pill = document.getElementById('lang-pill');
   if (pill) pill.addEventListener('click', () => applyLang(currentLang === 'zh' ? 'en' : 'zh'));
 
+  // Mobile hamburger menu
+  const mobileNav  = document.getElementById('mobile-nav');
+  const navMenuBtn = document.getElementById('nav-menu-btn');
+  if (navMenuBtn && mobileNav) {
+    navMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileNav.classList.toggle('open'); });
+    document.addEventListener('click', (e) => { if (!mobileNav.contains(e.target) && e.target !== navMenuBtn) mobileNav.classList.remove('open'); });
+    mobileNav.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+  }
+
   // Restore saved language on load
   try {
     const saved = localStorage.getItem('ig_lang');

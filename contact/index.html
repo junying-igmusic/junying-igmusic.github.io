@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <script>if(location.pathname.endsWith('/index.html'))location.replace(location.pathname.slice(0,-10));</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>聯繫我們 · 炎上音樂科技</title>
 <meta name="description" content="聯繫炎上音樂科技——產品合作、功能許願，或任何疑問，我們都樂意聆聽。" />
 <link rel="stylesheet" href="styles.css" />
@@ -25,8 +25,21 @@
   </div>
   <div class="nav-lang">
     <button class="lang-pill" id="lang-pill">EN</button>
+    <button class="lang-pill nav-menu-btn" id="nav-menu-btn" aria-label="選單">
+      <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="14" height="1.5" rx="0.75" fill="currentColor"/>
+        <rect y="4.75" width="14" height="1.5" rx="0.75" fill="currentColor"/>
+        <rect y="9.5" width="14" height="1.5" rx="0.75" fill="currentColor"/>
+      </svg>
+    </button>
   </div>
 </nav>
+
+<div id="mobile-nav" class="mobile-nav">
+  <a href="/?skip" class="mobile-nav-link" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+  <a href="../masternotes/" class="mobile-nav-link">Masternotes</a>
+  <a href="#" class="mobile-nav-link" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a>
+</div>
 
 <!-- ============================================================
      Contact section
