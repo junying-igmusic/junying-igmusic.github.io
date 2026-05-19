@@ -1611,14 +1611,20 @@
       .products-inner { padding: 0 20px; }
       .products-grid  { grid-template-columns: 1fr; gap: 16px; }
       .card-masternotes .card-visual-wrapper,
-      .card-sonatex    .card-visual-wrapper { height: 280px; overflow: hidden; }
+      .card-sonatex    .card-visual-wrapper { height: 340px; overflow: hidden; }
 
-      /* Masternotes — shrink iPhone to fit 280px wrapper (36px top padding → 244px room) */
-      .card-masternotes .iphone-frame { width: 115px; max-width: none; }
+      /* Masternotes — size iPhone to fit 340px wrapper (36px top padding → 304px room) */
+      .card-masternotes .iphone-frame {
+        width: 145px;
+        max-width: none;
+        border-radius: 24px;
+      }
+      .card-masternotes .iphone-screen { border-radius: 18px; }
 
-      /* SonateX — portrait iPad on mobile */
-      .card-sonatex .ipad-frame { width: 178px; max-width: none; }
+      /* SonateX — portrait iPad on mobile, centered crop */
+      .card-sonatex .ipad-frame { width: 216px; max-width: none; }
       .card-sonatex .ipad-screen { aspect-ratio: 3/4; }
+      .card-sonatex .ipad-screen img { object-position: top center; }
 
       /* Wish button — pull out of absolute positioning, center in grid column */
       .btn-wish {
