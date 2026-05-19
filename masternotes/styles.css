@@ -1034,7 +1034,19 @@ img, video { display: block; max-width: 100%; }
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
   }
-  .panel__inner { padding: 28px 22px; }
+  .panel__inner {
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mobile reorder: carousel first, then slogan + features */
+  .mobile-product-label { order: 1; }
+  .mobile-carousel      { order: 2; }
+  .hero-block           { order: 3; }
+  .features             { order: 4; }
+  .manifesto            { order: 5; }
+  .credit               { order: 6; }
 
   /* Mobile top product label */
   .mobile-product-label {

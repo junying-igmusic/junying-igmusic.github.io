@@ -1602,6 +1602,7 @@
     .mobile-nav-link:hover { opacity: 0.45 !important; }
 
     @media (max-width: 768px) {
+      html { scroll-behavior: smooth; }
       .nav-links    { display: none !important; }
       .nav-menu-btn { display: flex; align-items: center; }
       .mobile-nav   { display: flex; }
@@ -1628,8 +1629,18 @@
       .card-sonatex .ipad-screen { aspect-ratio: auto; }
       .card-sonatex .ipad-screen img { height: auto; object-fit: initial; object-position: initial; }
 
+      /* Products section — reduce top/bottom padding */
+      #products { padding-top: 30px; padding-bottom: 60px; }
+
+      /* Features section — hide on mobile */
+      #features { display: none; }
+
+      /* About section — reduce top padding */
+      #about { padding-top: 60px; }
+
       /* Contact section — stack columns */
       .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
 
       /* Footer — stack items */
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
@@ -1645,7 +1656,7 @@
         position: static;
         transform: none;
         display: flex;
-        margin: 16px auto 0;
+        margin: 40px auto 0;
         font-size: 14px;
         padding: 11px 22px;
         white-space: nowrap;
@@ -1684,6 +1695,7 @@
         color: rgba(0,0,0,0.6);
       }
       .card-visual-wrapper:hover .card-visual-inner { transform: none; }
+      .card-visual-wrapper.flipped .card-visual-inner { transform: rotateY(180deg); }
       .flip-tag:hover                               { transform: none; background: rgba(255,255,255,0.45); box-shadow: none; }
       .btn-appstore:hover                           { transform: none; }
       .btn-appstore:hover::after                    { animation: none; }
@@ -2230,6 +2242,15 @@
     };
     swapSonatexImg();
     window.addEventListener('resize', swapSonatexImg, { passive: true });
+
+    // Mobile tap-to-flip cards (touch devices only)
+    if (window.matchMedia('(hover: none)').matches) {
+      document.querySelectorAll('.card-visual-wrapper').forEach((wrapper) => {
+        wrapper.addEventListener('click', () => {
+          wrapper.classList.toggle('flipped');
+        });
+      });
+    }
 
     const mobileNav    = document.getElementById('mobile-nav');
     const navMenuBtn   = document.getElementById('nav-menu-btn');
