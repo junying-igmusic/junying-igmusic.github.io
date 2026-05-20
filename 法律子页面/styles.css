@@ -654,8 +654,15 @@ a.mobile-nav-sub-link.is-active::before {
 
   #navbar { padding: 0 20px; }
   .nav-links { display: none !important; }
-  .nav-menu-btn { display: flex; align-items: center; }
+  .nav-menu-btn { display: inline-flex; align-items: center; justify-content: center; }
   .mobile-nav { display: flex; }
+  .lang-pill {
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 2px 8px rgba(0,0,0,0.06);
+  }
 
   .legal-header         { padding: 48px 24px 36px; }
   .legal-accordion-list { padding: 0 24px 60px; }
@@ -669,10 +676,10 @@ a.mobile-nav-sub-link.is-active::before {
 @media (hover: none) {
   .nav-logo-link:hover { transform: none; }
   .lang-pill:hover {
-    background: #ffffff;
-    border-color: rgba(0,0,0,0.12);
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.9);
     color: rgba(0,0,0,0.65);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 2px 8px rgba(0,0,0,0.06);
   }
   .legal-card:hover { box-shadow: none; transform: none; }
 }
