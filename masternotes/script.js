@@ -361,7 +361,10 @@
       if (isSupport && h.includes('support'))      hit = true;
       if (hit) {
         a.classList.add('is-active');
-        a.closest('.mobile-nav-group')?.classList.add('is-open');
+        const grp = a.closest('.mobile-nav-group');
+        grp?.classList.add('is-open');
+        const sub = grp?.querySelector('.mobile-nav-sub');
+        if (sub) sub.style.height = sub.scrollHeight + 'px';
       }
     });
   })();
@@ -370,7 +373,11 @@
   document.querySelectorAll('.mobile-nav-group-btn').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
-      btn.closest('.mobile-nav-group').classList.toggle('is-open');
+      const group = btn.closest('.mobile-nav-group');
+      const sub = group.querySelector('.mobile-nav-sub');
+      const opening = !group.classList.contains('is-open');
+      group.classList.toggle('is-open');
+      sub.style.height = opening ? sub.scrollHeight + 'px' : '0';
     });
   });
   // Also close mobile-nav sub-links should close the nav

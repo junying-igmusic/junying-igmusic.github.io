@@ -1713,7 +1713,7 @@
       top: calc(100% + 14px);
       left: 50%;
       transform: translateX(-50%) translateY(-4px);
-      background: rgba(255,255,255,0.96);
+      background: rgba(255,255,255,0.82);
       backdrop-filter: blur(20px) saturate(1.6);
       -webkit-backdrop-filter: blur(20px) saturate(1.6);
       border: 1px solid rgba(0,0,0,0.08);
@@ -1730,6 +1730,14 @@
       opacity: 1;
       pointer-events: auto;
       transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      height: 18px;
     }
 
     .nav-dd-item {
@@ -1779,7 +1787,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 11px 24px;
+      padding: 11px 28px;
       background: none;
       border: none;
       cursor: pointer;
@@ -1800,15 +1808,14 @@
     .mobile-nav-group.is-open .mobile-nav-chevron { transform: rotate(180deg); }
 
     .mobile-nav-sub {
-      max-height: 0;
+      height: 0;
       overflow: hidden;
-      transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1);
+      transition: height 0.28s cubic-bezier(0.4,0,0.2,1);
     }
-    .mobile-nav-group.is-open .mobile-nav-sub { max-height: 200px; }
 
     .mobile-nav-sub-link {
       display: block;
-      padding: 9px 24px 9px 40px;
+      padding: 9px 24px 9px 44px;
       font-size: 14px;
       color: rgba(0,0,0,0.7);
       text-decoration: none;
@@ -2406,7 +2413,10 @@
         if (isSupport && h.includes('support'))      hit = true;
         if (hit) {
           a.classList.add('is-active');
-          a.closest('.mobile-nav-group')?.classList.add('is-open');
+          const grp = a.closest('.mobile-nav-group');
+          grp?.classList.add('is-open');
+          const sub = grp?.querySelector('.mobile-nav-sub');
+          if (sub) sub.style.height = sub.scrollHeight + 'px';
         }
       });
     })();
@@ -2415,7 +2425,11 @@
     document.querySelectorAll('.mobile-nav-group-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         e.stopPropagation();
-        btn.closest('.mobile-nav-group').classList.toggle('is-open');
+        const group = btn.closest('.mobile-nav-group');
+        const sub = group.querySelector('.mobile-nav-sub');
+        const opening = !group.classList.contains('is-open');
+        group.classList.toggle('is-open');
+        sub.style.height = opening ? sub.scrollHeight + 'px' : '0';
       });
     });
     // Also close mobile-nav sub-links should close the nav

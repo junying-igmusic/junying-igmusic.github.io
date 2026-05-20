@@ -453,7 +453,7 @@ a.contact-item-value:hover { color: #000; }
   top: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%) translateY(-4px);
-  background: rgba(255,255,255,0.96);
+  background: rgba(255,255,255,0.82);
   backdrop-filter: blur(20px) saturate(1.6);
   -webkit-backdrop-filter: blur(20px) saturate(1.6);
   border: 1px solid rgba(0,0,0,0.08);
@@ -470,6 +470,14 @@ a.contact-item-value:hover { color: #000; }
   opacity: 1;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 18px;
 }
 
 .nav-dd-item {
@@ -519,7 +527,7 @@ a.nav-dd-item.is-active::before {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 11px 24px;
+  padding: 11px 28px;
   background: none;
   border: none;
   cursor: pointer;
@@ -540,15 +548,14 @@ a.nav-dd-item.is-active::before {
 .mobile-nav-group.is-open .mobile-nav-chevron { transform: rotate(180deg); }
 
 .mobile-nav-sub {
-  max-height: 0;
+  height: 0;
   overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1);
+  transition: height 0.28s cubic-bezier(0.4,0,0.2,1);
 }
-.mobile-nav-group.is-open .mobile-nav-sub { max-height: 200px; }
 
 .mobile-nav-sub-link {
   display: block;
-  padding: 9px 24px 9px 40px;
+  padding: 9px 24px 9px 44px;
   font-size: 14px;
   color: rgba(0,0,0,0.7);
   text-decoration: none;
