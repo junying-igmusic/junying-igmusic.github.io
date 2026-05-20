@@ -608,7 +608,7 @@ a.mobile-nav-sub-link.is-active::before {
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
-  gap: 56px;
+  gap: 80px;
 }
 
 .products-group {
@@ -627,6 +627,7 @@ a.mobile-nav-sub-link.is-active::before {
 .products-grid {
   display: grid;
   grid-template-columns: repeat(2, 240px);
+  grid-auto-rows: 240px;
   gap: 20px;
 }
 
@@ -982,6 +983,7 @@ a.mobile-nav-sub-link.is-active::before {
   }
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
   }
   .products-grid--single {
     grid-template-columns: 1fr;
