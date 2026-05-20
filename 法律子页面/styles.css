@@ -182,7 +182,7 @@ body {
 
 /* ── Hub: accordion list ──────────────────────────────────── */
 .legal-accordion-list {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 40px 80px;
   width: 100%;
@@ -250,6 +250,38 @@ body {
   max-height: 0;
   opacity: 0;
 }
+
+/* ── Impressum static card ──────────────────────────────── */
+.impressum-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.impressum-card__header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.impressum-card__category {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 2px;
+}
+
+.impressum-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.impressum-card .impressum-inline { border-top: none; }
 
 /* ── Impressum inline body ──────────────────────────────── */
 .impressum-inline {
