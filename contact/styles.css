@@ -434,6 +434,7 @@ a.contact-item-value:hover { color: #000; }
   cursor: pointer;
   font-family: inherit;
   font-size: 14px;
+  letter-spacing: 0.03em;
   color: #000;
   opacity: 0.65;
   padding: 0;
