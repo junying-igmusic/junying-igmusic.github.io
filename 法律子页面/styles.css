@@ -350,36 +350,77 @@ body {
 
 /* ── Footer ───────────────────────────────────────────────── */
 #footer {
-  margin-top: auto;
-  border-top: 1px solid var(--border);
-  padding: 28px 40px;
+  background: #0a0a0a;
+  padding: 64px 40px 52px;
 }
-
 .footer-inner {
-  max-width: 860px;
+  max-width: 1100px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 0 60px;
+  align-items: start;
 }
-
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
 }
-.footer-logo img { height: 20px; }
-.footer-logo-name {
-  font-size: 13px;
-  color: var(--ink-soft);
+.footer-logo img {
+  height: 24px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
 }
-
+.footer-logo-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.01em;
+}
 .footer-copy {
   font-size: 12px;
-  color: var(--ink-faint);
+  color: rgba(255,255,255,0.28);
+  line-height: 1.5;
+  margin: 0;
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.footer-col-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+}
+.footer-col-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-col-links a {
+  font-size: 14px;
+  color: rgba(255,255,255,0.48);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+.footer-col-links a:hover { color: rgba(255,255,255,0.9); }
+.footer-link-dim {
+  font-size: 14px;
+  color: rgba(255,255,255,0.22);
 }
 
 /* ── Mobile ───────────────────────────────────────────────── */
@@ -403,7 +444,9 @@ body {
   .legal-accordion-list { padding: 0 24px 60px; }
   .legal-doc            { padding: 0 24px 60px; }
   .legal-doc__body { padding: 28px 24px 32px; }
-  #footer       { padding: 24px 24px; }
+  #footer { padding: 48px 24px 44px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+  .footer-brand { grid-column: 1 / -1; }
 }
 
 @media (hover: none) {
