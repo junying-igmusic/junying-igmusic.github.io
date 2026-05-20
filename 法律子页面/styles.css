@@ -223,9 +223,9 @@ body {
 
 .accordion__body {
   overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
               opacity   0.25s ease;
-  max-height: 600px;
+  max-height: 2400px;
   opacity: 1;
 }
 .accordion[data-open="false"] .accordion__body {
@@ -233,38 +233,28 @@ body {
   opacity: 0;
 }
 
-/* ── Standalone card row (e.g. Impressum above accordion) ── */
-.legal-solo-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  text-decoration: none;
-  color: var(--ink);
-  transition: background 0.15s ease;
+/* ── Impressum inline body ──────────────────────────────── */
+.impressum-inline {
+  padding: 20px 24px 28px;
+  border-top: 1px solid var(--border);
 }
-.legal-solo-row:hover { background: rgba(0,0,0,0.02); }
-.legal-solo-row__label {
-  font-size: 11px;
+.impressum-inline .doc-content h2 {
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: 2px;
+  margin: 20px 0 6px;
 }
-.legal-solo-row__name {
-  font-size: 15px;
-  font-weight: 600;
-}
-.legal-solo-row__arrow {
+.impressum-inline .doc-content h2:first-child { margin-top: 0; }
+.impressum-inline .doc-content p {
   font-size: 14px;
-  color: var(--ink-faint);
-  transition: transform 0.15s ease;
+  line-height: 1.65;
+  color: var(--ink);
+  margin: 0;
 }
-.legal-solo-row:hover .legal-solo-row__arrow { transform: translateX(3px); }
+.impressum-inline .doc-content p + p { margin-top: 6px; }
+.impressum-inline .doc-content a { color: var(--ink); text-decoration: underline; }
 
 /* ── Doc rows ─────────────────────────────────────────────── */
 .doc-row {
