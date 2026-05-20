@@ -507,7 +507,7 @@ a.nav-dd-item:hover { background: rgba(0,0,0,0.04); color: rgba(0,0,0,0.9); }
   opacity: 1 !important;
   text-decoration: none !important;
 }
-.nav-links a.is-active::after,
+.nav-links > a.is-active::after,
 .nav-dropdown.is-active::after {
   content: '';
   position: absolute;
