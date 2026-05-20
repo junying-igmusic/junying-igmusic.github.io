@@ -608,7 +608,7 @@ a.mobile-nav-sub-link.is-active::before {
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
-  gap: 80px;
+  gap: 120px;
 }
 
 .products-group {
