@@ -149,3 +149,20 @@
     });
   });
 })();
+
+// ── Dynamic copyright year ──────────────────────────────────
+document.querySelectorAll('.footer-year').forEach(el => {
+  el.textContent = new Date().getFullYear();
+});
+
+// ── Footer accordion (mobile) ───────────────────────────────
+document.querySelectorAll('.footer-col-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (window.innerWidth > 768) return;
+    const col = btn.closest('.footer-col');
+    const links = col.querySelector('.footer-col-links');
+    const isOpen = col.classList.contains('is-open');
+    col.classList.toggle('is-open');
+    links.style.height = isOpen ? '0' : links.scrollHeight + 'px';
+  });
+});

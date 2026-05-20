@@ -1522,6 +1522,40 @@
       color: rgba(255,255,255,0.22);
     }
 
+    /* ── Footer: col toggle button ── */
+    .footer-col-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+      cursor: default;
+      pointer-events: none;
+      text-align: left;
+    }
+    .footer-col-chevron {
+      display: none;
+      color: rgba(255,255,255,0.4);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    /* ── Footer bottom (copyright) ── */
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 28px auto 0;
+      padding: 20px 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-bottom .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.5;
+      margin: 0;
+    }
+
     /* ── Mobile nav ── */
     .nav-menu-btn { display: none; margin-left: 8px; }
 
@@ -1619,10 +1653,17 @@
         padding: 32px 24px 36px;
       }
 
-      /* Footer — 2-col grid on mobile */
+      /* Footer — accordion on mobile */
       #footer { padding: 48px 24px 44px; }
-      .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
-      .footer-brand { grid-column: 1 / -1; }
+      .footer-inner { grid-template-columns: 1fr !important; gap: 0 !important; }
+      .footer-brand { padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); grid-column: auto !important; }
+      .footer-col { border-top: 1px solid rgba(255,255,255,0.08); }
+      .footer-col-toggle { cursor: pointer; pointer-events: auto; padding: 14px 0; }
+      .footer-col-chevron { display: block; }
+      .footer-col.is-open .footer-col-chevron { transform: rotate(180deg); }
+      .footer-col-links { height: 0; overflow: hidden; transition: height 0.28s cubic-bezier(0.4,0,0.2,1); margin: 0; }
+      .footer-col.is-open .footer-col-links { padding-bottom: 16px; }
+      .footer-bottom { padding: 16px 0 0; margin-top: 16px; }
 
       /* Wish button — show mobile text + star, hide desktop text */
       .wish-text-desktop { display: none; }
@@ -2191,29 +2232,40 @@
           <img src="加载动画素材包/ig_logo_solid.svg" alt="炎上音樂科技">
           <span class="footer-logo-name" data-i18n-zh="炎上音樂科技" data-i18n-en="Ignition Musictech">炎上音樂科技</span>
         </a>
-        <p class="footer-copy" data-i18n-zh="© 2025 炎上音樂科技有限公司" data-i18n-en="© 2025 Ignition Musictech Limited">© 2025 炎上音樂科技有限公司</p>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title" data-i18n-zh="產品" data-i18n-en="Products">產品</h4>
+        <button class="footer-col-toggle">
+          <h4 class="footer-col-title" data-i18n-zh="產品" data-i18n-en="Products">產品</h4>
+          <svg class="footer-col-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
         <ul class="footer-col-links">
           <li><a href="masternotes/">Masternotes</a></li>
           <li><span class="footer-link-dim" data-i18n-zh="SonateX（即將推出）" data-i18n-en="SonateX (Coming Soon)">SonateX（即將推出）</span></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title" data-i18n-zh="公司" data-i18n-en="Company">公司</h4>
+        <button class="footer-col-toggle">
+          <h4 class="footer-col-title" data-i18n-zh="公司" data-i18n-en="Company">公司</h4>
+          <svg class="footer-col-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
         <ul class="footer-col-links">
           <li><a href="contact/" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a></li>
           <li><a href="法律子页面/">Impressum</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title" data-i18n-zh="資源" data-i18n-en="Resources">資源</h4>
+        <button class="footer-col-toggle">
+          <h4 class="footer-col-title" data-i18n-zh="資源" data-i18n-en="Resources">資源</h4>
+          <svg class="footer-col-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
         <ul class="footer-col-links">
           <li><a href="contact/" data-i18n-zh="支援" data-i18n-en="Support">支援</a></li>
           <li><a href="法律子页面/" data-i18n-zh="法律" data-i18n-en="Legal">法律</a></li>
         </ul>
       </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© <span class="footer-year"></span> <span data-i18n-zh="炎上音樂科技有限公司" data-i18n-en="Ignition Musictech Limited">炎上音樂科技有限公司</span></p>
     </div>
   </footer>
 
@@ -2485,6 +2537,23 @@
     document.querySelectorAll('a.mobile-nav-sub-link').forEach(a => {
       a.addEventListener('click', () => {
         document.getElementById('mobile-nav')?.classList.remove('open');
+      });
+    });
+
+    // ── Dynamic copyright year ──────────────────────────────────
+    document.querySelectorAll('.footer-year').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    // ── Footer accordion (mobile) ───────────────────────────────
+    document.querySelectorAll('.footer-col-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (window.innerWidth > 768) return;
+        const col = btn.closest('.footer-col');
+        const links = col.querySelector('.footer-col-links');
+        const isOpen = col.classList.contains('is-open');
+        col.classList.toggle('is-open');
+        links.style.height = isOpen ? '0' : links.scrollHeight + 'px';
       });
     });
 
