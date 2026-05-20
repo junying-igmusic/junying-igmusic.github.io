@@ -927,7 +927,7 @@ a.mobile-nav-sub-link.is-active::before {
   justify-content: space-between;
   gap: 16px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   color: #1C1C1E;
   background: none;
   border: none;
