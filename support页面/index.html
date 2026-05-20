@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<script>if(location.pathname.endsWith('/index.html'))location.replace(location.pathname.slice(0,-10));</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>支援 · 炎上音樂科技</title>
+<meta name="description" content="炎上音樂科技產品支援中心——查找常見問題、使用指南與訂閱說明。" />
+<link rel="icon" href="../favicon-32.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     Sticky navbar
+     ============================================================ -->
+<nav id="navbar">
+  <div id="nav-logo">
+    <a href="/?skip" class="nav-logo-link" aria-label="炎上音樂科技首頁">
+      <img src="../加载动画素材包/ig_logo_solid.svg" alt="炎上音樂科技">
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="/?skip" class="nav-link" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+    <div class="nav-dropdown">
+      <button class="nav-link nav-dropdown-trigger" data-nav-section="products">
+        <span data-i18n-zh="產品" data-i18n-en="Products">產品</span>
+        <svg class="nav-dd-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dropdown-menu">
+        <a href="/masternotes/" class="nav-dd-item">Masternotes</a>
+        <span class="nav-dd-item nav-dd-item--dim" data-i18n-zh="SonateX（即將推出）" data-i18n-en="SonateX (Coming Soon)">SonateX（即將推出）</span>
+      </div>
+    </div>
+    <a href="/contact/" class="nav-link" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a>
+    <div class="nav-dropdown">
+      <button class="nav-link nav-dropdown-trigger" data-nav-section="resources">
+        <span data-i18n-zh="資源" data-i18n-en="Resources">資源</span>
+        <svg class="nav-dd-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dropdown-menu">
+        <a href="/support/" class="nav-dd-item" data-i18n-zh="支援" data-i18n-en="Support">支援</a>
+        <a href="/法律子页面/" class="nav-dd-item" data-i18n-zh="法律" data-i18n-en="Legal">法律</a>
+      </div>
+    </div>
+  </div>
+  <div class="nav-lang">
+    <button class="lang-pill" id="lang-pill">EN</button>
+    <button class="lang-pill nav-menu-btn" id="nav-menu-btn" aria-label="選單">
+      <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="14" height="1.5" rx="0.75" fill="currentColor"/>
+        <rect y="4.75" width="14" height="1.5" rx="0.75" fill="currentColor"/>
+        <rect y="9.5" width="14" height="1.5" rx="0.75" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-nav" class="mobile-nav">
+  <a href="/?skip" class="mobile-nav-link" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+  <div class="mobile-nav-group">
+    <button class="mobile-nav-group-btn">
+      <span data-i18n-zh="產品" data-i18n-en="Products">產品</span>
+      <svg class="mobile-nav-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mobile-nav-sub">
+      <a href="/masternotes/" class="mobile-nav-sub-link">Masternotes</a>
+      <span class="mobile-nav-sub-link mobile-nav-sub-link--dim" data-i18n-zh="SonateX（即將推出）" data-i18n-en="SonateX (Coming Soon)">SonateX（即將推出）</span>
+    </div>
+  </div>
+  <a href="/contact/" class="mobile-nav-link" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a>
+  <div class="mobile-nav-group">
+    <button class="mobile-nav-group-btn">
+      <span data-i18n-zh="資源" data-i18n-en="Resources">資源</span>
+      <svg class="mobile-nav-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mobile-nav-sub">
+      <a href="/support/" class="mobile-nav-sub-link" data-i18n-zh="支援" data-i18n-en="Support">支援</a>
+      <a href="/法律子页面/" class="mobile-nav-sub-link" data-i18n-zh="法律" data-i18n-en="Legal">法律</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     Hero section
+     ============================================================ -->
+<section class="support-hero">
+  <div class="support-hero-inner">
+    <h1 class="support-hero-title" data-i18n-zh="請問有什麼可以幫你？" data-i18n-en="Hi, how can we help you?">請問有什麼可以幫你？</h1>
+    <div class="search-row">
+      <div class="search-wrap">
+        <input
+          type="search"
+          id="heroSearch"
+          class="search-input"
+          autocomplete="off"
+          spellcheck="false"
+          data-i18n-placeholder-zh="搜尋問題…"
+          data-i18n-placeholder-en="Search for answers…"
+          placeholder="搜尋問題…"
+        />
+        <button class="search-btn" id="heroSearchBtn" aria-label="搜尋">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(0,0,0,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="search-results" id="searchResults" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Products section
+     ============================================================ -->
+<section class="support-products">
+  <div class="support-products-inner">
+    <p class="products-label" data-i18n-zh="產品支援" data-i18n-en="Product Support">產品支援</p>
+    <h2 class="products-title" data-i18n-zh="選擇你的產品" data-i18n-en="Choose your product">選擇你的產品</h2>
+    <div class="products-grid">
+
+      <!-- Masternotes card -->
+      <a href="./masternotes.html" class="product-card">
+        <img class="product-card-icon" src="../加载动画素材包/ig_logo_solid.svg" alt="Masternotes" />
+        <div class="product-card-body">
+          <p class="product-card-name">Masternotes</p>
+          <p class="product-card-desc" data-i18n-zh="古典音樂 AI 對話應用" data-i18n-en="Classical music AI conversation app">古典音樂 AI 對話應用</p>
+          <span class="product-card-chip" data-i18n-zh="12 篇文章" data-i18n-en="12 articles">12 篇文章</span>
+        </div>
+        <span class="product-card-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <!-- SonateX card (coming soon) -->
+      <div class="product-card product-card--coming">
+        <div class="product-card-icon product-card-icon--placeholder">S</div>
+        <div class="product-card-body">
+          <p class="product-card-name">SonateX</p>
+          <p class="product-card-desc" data-i18n-zh="即將推出" data-i18n-en="Coming soon">即將推出</p>
+          <span class="product-card-chip product-card-chip--gray" data-i18n-zh="即將推出" data-i18n-en="Coming Soon">即將推出</span>
+        </div>
+        <span class="product-card-arrow" aria-hidden="true">→</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Footer
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/?skip" class="footer-logo">
+        <img src="../加载动画素材包/ig_logo_solid.svg" alt="炎上音樂科技">
+        <span class="footer-logo-name" data-i18n-zh="炎上音樂科技" data-i18n-en="Ignition Musictech">炎上音樂科技</span>
+      </a>
+    </div>
+    <div class="footer-col">
+      <button class="footer-col-toggle">
+        <h4 class="footer-col-title" data-i18n-zh="產品" data-i18n-en="Products">產品</h4>
+        <svg class="footer-col-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="footer-col-links">
+        <li><a href="../masternotes/">Masternotes</a></li>
+        <li><span class="footer-link-dim" data-i18n-zh="SonateX（即將推出）" data-i18n-en="SonateX (Coming Soon)">SonateX（即將推出）</span></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <button class="footer-col-toggle">
+        <h4 class="footer-col-title" data-i18n-zh="公司" data-i18n-en="Company">公司</h4>
+        <svg class="footer-col-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="footer-col-links">
+        <li><a href="../contact/" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a></li>
+        <li><a href="../法律子页面/">Impressum</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <button class="footer-col-toggle">
+        <h4 class="footer-col-title" data-i18n-zh="資源" data-i18n-en="Resources">資源</h4>
+        <svg class="footer-col-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="footer-col-links">
+        <li><a href="./" data-i18n-zh="支援" data-i18n-en="Support">支援</a></li>
+        <li><a href="../法律子页面/" data-i18n-zh="法律" data-i18n-en="Legal">法律</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© <span class="footer-year"></span> <span data-i18n-zh="炎上音樂科技有限公司" data-i18n-en="Ignition Musictech Limited">炎上音樂科技有限公司</span></p>
+  </div>
+</footer>
+
+<script src="faq-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
