@@ -1299,7 +1299,8 @@ a.mobile-nav-sub-link.is-active::before {
   .mobile-carousel__btn--next { right: 12px; }
 
   .brand-block { margin-bottom: 28px; justify-content: center; }
-  .hero-block { text-align: center; margin-bottom: 24px; }
+  .hero-block { text-align: center; margin-bottom: 24px; padding-top: 20px; }
+  .hero-block__brand { justify-content: center; }
   .hero-block__sub { margin-left: auto; margin-right: auto; }
   .hero-block__ctas { justify-content: center; }
 
