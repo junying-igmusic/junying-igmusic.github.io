@@ -1214,22 +1214,12 @@ a.mobile-nav-sub-link.is-active::before {
   }
 
   /* Mobile reorder: carousel first, then slogan + features */
-  .mobile-product-label { order: 1; }
-  .mobile-carousel      { order: 2; }
-  .hero-block           { order: 3; }
-  .features             { order: 4; }
-  .manifesto            { order: 5; }
-  .credit               { order: 6; }
-
-  /* Mobile top product label */
-  .mobile-product-label {
-    display: block;
-    text-align: center;
-    color: var(--text-sub);
-    font-size: 14px;
-    font-weight: 500;
-    padding: 6px 0 22px;
-  }
+  .mobile-product-label { display: none; }
+  .mobile-carousel      { order: 1; }
+  .hero-block           { order: 2; }
+  .features             { order: 3; }
+  .manifesto            { order: 4; }
+  .credit               { order: 5; }
 
   /* Mobile carousel */
   .mobile-carousel {
