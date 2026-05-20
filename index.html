@@ -134,6 +134,8 @@
       transform: translateX(-50%);
       display: flex;
       gap: 40px;
+      height: 100%;
+      align-items: center;
       opacity: 0;
       transition: opacity 0.35s ease;
     }
@@ -144,6 +146,10 @@
       font-size: 14px;
       letter-spacing: 0.03em;
       opacity: 0.65;
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
       transition: opacity 0.2s ease;
     }
 
@@ -1756,14 +1762,22 @@
     .nav-dd-item--dim { color: rgba(0,0,0,0.28); cursor: default; }
     .nav-dd-item--dim:hover { background: none; }
 
-    /* Active: parent gets black underline */
+    /* Active: navbar-bottom indicator bar */
     .nav-links a.is-active,
     .nav-dropdown-trigger.is-active {
       opacity: 1 !important;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-color: rgba(0,0,0,0.8);
-      text-decoration-thickness: 1.5px;
+      text-decoration: none !important;
+    }
+    .nav-links a.is-active::after,
+    .nav-dropdown.is-active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(0,0,0,0.85);
+      border-radius: 1px;
     }
     /* Active: sub-item gets dark-blue dot */
     a.nav-dd-item.is-active { color: rgba(0,0,0,0.85); }
@@ -2388,8 +2402,14 @@
       const triggers = document.querySelectorAll('.nav-dropdown-trigger');
       triggers.forEach(btn => {
         const sec = btn.dataset.navSection;
-        if (isMaster && sec === 'products')              btn.classList.add('is-active');
-        if ((isLegal || isSupport) && sec === 'resources') btn.classList.add('is-active');
+        if (isMaster && sec === 'products') {
+          btn.classList.add('is-active');
+          btn.closest('.nav-dropdown')?.classList.add('is-active');
+        }
+        if ((isLegal || isSupport) && sec === 'resources') {
+          btn.classList.add('is-active');
+          btn.closest('.nav-dropdown')?.classList.add('is-active');
+        }
       });
       // Desktop: sub-items
       document.querySelectorAll('a.nav-dd-item').forEach(a => {

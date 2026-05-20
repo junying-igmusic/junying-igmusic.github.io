@@ -335,8 +335,14 @@
     const triggers = document.querySelectorAll('.nav-dropdown-trigger');
     triggers.forEach(btn => {
       const sec = btn.dataset.navSection;
-      if (isMaster && sec === 'products')              btn.classList.add('is-active');
-      if ((isLegal || isSupport) && sec === 'resources') btn.classList.add('is-active');
+      if (isMaster && sec === 'products') {
+        btn.classList.add('is-active');
+        btn.closest('.nav-dropdown')?.classList.add('is-active');
+      }
+      if ((isLegal || isSupport) && sec === 'resources') {
+        btn.classList.add('is-active');
+        btn.closest('.nav-dropdown')?.classList.add('is-active');
+      }
     });
     // Desktop: sub-items
     document.querySelectorAll('a.nav-dd-item').forEach(a => {
