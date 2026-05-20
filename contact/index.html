@@ -141,6 +141,18 @@
         </div>
         <input type="hidden" id="contact-topic" value="">
       </div>
+      <!-- Product selector — visible only for trial topic -->
+      <div class="form-group" id="form-group-product">
+        <label class="form-label" id="fl-product">產品 *</label>
+        <div class="product-chips" id="product-chips">
+          <button type="button" class="product-chip" data-value="masternotes">Masternotes</button>
+          <button type="button" class="product-chip product-chip--disabled" data-value="sonatex" disabled>
+            SonateX&thinsp;<span class="product-chip-tag" data-i18n-zh="即將推出" data-i18n-en="Coming Soon">即將推出</span>
+          </button>
+        </div>
+        <input type="hidden" id="contact-product" value="">
+      </div>
+
       <div class="form-group">
         <label class="form-label" id="label-title">標題 *</label>
         <input class="form-input" id="contact-title" type="text" placeholder="請簡述您的查詢標題" required>

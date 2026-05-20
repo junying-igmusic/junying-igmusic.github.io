@@ -24,6 +24,7 @@
       'fl-name-opt': '姓名',
       'fl-email': '電子郵件 *',
       'fl-topic': '主題',
+      'fl-product': '產品 *',
       'btn-submit': '發送訊息',
       'form-success': '已收到您的訊息，我們將盡快回覆。♪',
     },
@@ -42,6 +43,7 @@
       'fl-name-opt': 'Name',
       'fl-email': 'Email *',
       'fl-topic': 'Topic',
+      'fl-product': 'Product *',
       'btn-submit': 'Send Message',
       'form-success': 'Message received — we\'ll be in touch soon. ♪',
     },
@@ -92,6 +94,15 @@
 
     // Reapply topic mode to refresh placeholders + labels
     applyTopicMode(selectHidden ? selectHidden.value : '');
+
+    // Product label
+    const flProduct = document.getElementById('fl-product');
+    if (flProduct) flProduct.textContent = i18n[lang]['fl-product'];
+
+    // Product chip "Coming Soon" tag
+    document.querySelectorAll('.product-chip-tag').forEach(tag => {
+      tag.textContent = lang === 'zh' ? '即將推出' : 'Coming Soon';
+    });
 
     // Submit button
     const btnSubmit = document.getElementById('btn-submit');
@@ -174,6 +185,16 @@
     });
   });
 
+  // Product chip selection
+  document.querySelectorAll('.product-chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.product-chip').forEach(c => c.classList.remove('is-selected'));
+      chip.classList.add('is-selected');
+      const productInput = document.getElementById('contact-product');
+      if (productInput) productInput.value = chip.dataset.value;
+    });
+  });
+
   /* ----------------------------------------------------------
      Trial mode: hides title / converts message to intro field
      ---------------------------------------------------------- */
@@ -198,6 +219,20 @@
     if (flName) flName.textContent = nameOpt ? t['fl-name-opt'] : t['fl-name'];
     if (labelTitle)   labelTitle.textContent   = titleOpt   ? t['label-title-opt']   : t['label-title-req'];
     if (labelMessage) labelMessage.textContent = messageOpt ? t['label-message-opt'] : t['label-message-req'];
+
+    // Product selector: only visible for trial topic
+    const productGroup = document.getElementById('form-group-product');
+    const productInput = document.getElementById('contact-product');
+    if (productGroup) {
+      if (topic === 'trial') {
+        productGroup.classList.add('is-visible');
+      } else {
+        productGroup.classList.remove('is-visible');
+        // Reset selection when hiding
+        if (productInput) productInput.value = '';
+        document.querySelectorAll('.product-chip').forEach(c => c.classList.remove('is-selected'));
+      }
+    }
   }
 
   /* ----------------------------------------------------------
@@ -224,6 +259,21 @@
         el.addEventListener('animationend', () => el.classList.remove('field-shake'), { once: true });
       }
     });
+    // Validate product when topic is trial
+    const topicVal = document.getElementById('contact-topic')?.value;
+    if (topicVal === 'trial') {
+      const productInput = document.getElementById('contact-product');
+      if (!productInput || !productInput.value) {
+        invalid = true;
+        const chips = document.getElementById('product-chips');
+        if (chips) {
+          chips.classList.remove('field-shake');
+          void chips.offsetWidth;
+          chips.classList.add('field-shake');
+          chips.addEventListener('animationend', () => chips.classList.remove('field-shake'), { once: true });
+        }
+      }
+    }
     return invalid;
   }
 
@@ -246,6 +296,7 @@
               : '614529d3-920b-4df1-a9e7-40d8e639bcd6',
             name: nameVal, email: emailVal,
             topic: selectHidden ? selectHidden.value : '',
+            product: document.getElementById('contact-product')?.value || '',
             subject: titleVal, message: messageVal,
           }),
         });

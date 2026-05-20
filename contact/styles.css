@@ -365,6 +365,66 @@ a.contact-item-value:hover { color: #000; }
 .custom-select-option.selected { color: #000; font-weight: 500; }
 .custom-select-option[data-value=""] { color: rgba(0,0,0,0.28); }
 
+/* ── Product selector (trial topic only) ── */
+#form-group-product {
+  display: none;
+}
+
+#form-group-product.is-visible {
+  display: flex;
+  animation: fadeSlideDown 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.product-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-chip {
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  color: rgba(0,0,0,0.6);
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  white-space: nowrap;
+}
+
+.product-chip:hover {
+  border-color: rgba(0,0,0,0.28);
+  color: #000;
+}
+
+.product-chip.is-selected {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.product-chip--disabled {
+  opacity: 0.32;
+  cursor: default;
+  pointer-events: none;
+}
+
+.product-chip-tag {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.product-chips.field-shake {
+  animation: shake 0.42s ease;
+}
+
 .form-textarea {
   height: 130px;
 }
