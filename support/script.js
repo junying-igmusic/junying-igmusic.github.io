@@ -244,7 +244,7 @@
 
       /* ── Category wrapper ── */
       const catDiv = document.createElement('div');
-      catDiv.className = 'faq-category is-open';
+      catDiv.className = 'faq-category';
 
       /* Category header (clickable) */
       const catHeader = document.createElement('button');
@@ -264,7 +264,7 @@
       /* Category body */
       const catBody = document.createElement('div');
       catBody.className = 'faq-category-body';
-      catBody.style.height = 'auto'; /* starts open */
+      catBody.style.height = '0'; /* starts collapsed */
 
       /* Category toggle logic */
       catHeader.addEventListener('click', () => {
