@@ -378,6 +378,26 @@
   /* Prevent input blur when clicking inside results panel */
   resultsPanel.addEventListener('mousedown', (e) => { e.preventDefault(); });
 
+  /* Simplified → Traditional Chinese character map for search normalisation */
+  const SIMP_TO_TRAD = {
+    '订':'訂','阅':'閱','应':'應','装':'裝','语':'語','资':'資','对':'對',
+    '账':'帳','隐':'隱','浏':'瀏','览':'覽','体':'體','欢':'歡','数':'數',
+    '传':'傳','发':'發','关':'關','进':'進','阶':'階','费':'費','务':'務',
+    '复':'複','还':'還','继':'繼','设':'設','备':'備','处':'處','详':'詳',
+    '见':'見','历':'歷','当':'當','们':'們','来':'來','后':'後','于':'於',
+    '页':'頁','间':'間','个':'個','这':'這','过':'過','为':'為','时':'時',
+    '记':'記','问':'問','题':'題','购':'購','买':'買','试':'試','联':'聯',
+    '总':'總','级':'級','专':'專','业':'業','种':'種','乐':'樂','话':'話',
+    '说':'說','览':'覽','择':'擇','规':'規','则':'則','带':'帶','该':'該',
+    '终':'終','结':'結','给':'給','请':'請','须':'須','样':'樣','转':'轉',
+    '删':'刪','选':'選','删':'刪','点':'點','动':'動','长':'長','边':'邊',
+    '针':'針','钱':'錢','储':'儲','联':'聯','联系':'聯繫',
+  };
+
+  function normQuery(str) {
+    return str.split('').map(c => SIMP_TO_TRAD[c] || c).join('');
+  }
+
   /* Filter dataset: on masternotes page only masternotes items; on index all */
   function getSearchPool() {
     return isFaqPage
@@ -392,14 +412,18 @@
       return;
     }
 
+    /* Also try with Simplified→Traditional conversion so both inputs match */
+    const qTrad = normQuery(q);
+
     const pool = getSearchPool();
     const matches = pool.filter(faq => {
-      return (
-        faq.questionZh.toLowerCase().includes(q) ||
-        faq.questionEn.toLowerCase().includes(q) ||
-        faq.answerZh.toLowerCase().includes(q) ||
-        faq.answerEn.toLowerCase().includes(q)
-      );
+      const texts = [
+        faq.questionZh.toLowerCase(),
+        faq.questionEn.toLowerCase(),
+        faq.answerZh.toLowerCase(),
+        faq.answerEn.toLowerCase(),
+      ];
+      return texts.some(t => t.includes(q) || (qTrad !== q && t.includes(qTrad)));
     });
 
     resultsPanel.innerHTML = '';
