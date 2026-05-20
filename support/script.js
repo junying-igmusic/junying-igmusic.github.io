@@ -24,6 +24,7 @@
       'search-placeholder-mn': '搜尋 Masternotes 問題…',
       /* shared */
       'no-results': '找不到相關結果',
+      'back': '← 返回結果',
     },
     en: {
       /* index */
@@ -34,6 +35,7 @@
       'search-placeholder-mn': 'Search Masternotes help…',
       /* shared */
       'no-results': 'No results found',
+      'back': '← Back to results',
     },
   };
 
@@ -217,13 +219,13 @@
   });
 
   /* ----------------------------------------------------------
-     FAQ rendering (masternotes page only)
+     FAQ rendering (masternotes page only) — two-level accordion
      ---------------------------------------------------------- */
   function renderFaq(lang) {
     const container = document.getElementById('faqContent');
     if (!container) return;
 
-    /* Group by category, preserving order: general first, then subscription */
+    /* Group by category, preserving order */
     const categoryOrder = ['general', 'subscription'];
     const groups = {};
     categoryOrder.forEach(cat => { groups[cat] = []; });
@@ -236,22 +238,56 @@
 
     container.innerHTML = '';
 
-    let isFirst = true;
     categoryOrder.forEach(cat => {
       const items = groups[cat];
       if (!items || items.length === 0) return;
 
-      const section = document.createElement('div');
-      section.className = 'faq-section' + (isFirst ? '' : '');
-      isFirst = false;
+      /* ── Category wrapper ── */
+      const catDiv = document.createElement('div');
+      catDiv.className = 'faq-category is-open';
 
-      /* Category title */
-      const catTitle = document.createElement('p');
-      catTitle.className = 'faq-category-title';
-      catTitle.textContent = lang === 'zh' ? items[0].categoryZh : items[0].categoryEn;
-      section.appendChild(catTitle);
+      /* Category header (clickable) */
+      const catHeader = document.createElement('button');
+      catHeader.className = 'faq-category-header';
+      catHeader.type = 'button';
 
-      /* FAQ items */
+      const catLabel = document.createElement('span');
+      catLabel.className = 'faq-category-label';
+      catLabel.textContent = lang === 'zh' ? items[0].categoryZh : items[0].categoryEn;
+      catHeader.appendChild(catLabel);
+      catHeader.insertAdjacentHTML('beforeend',
+        '<svg class="faq-category-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">' +
+        '<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>'
+      );
+
+      /* Category body */
+      const catBody = document.createElement('div');
+      catBody.className = 'faq-category-body';
+      catBody.style.height = 'auto'; /* starts open */
+
+      /* Category toggle logic */
+      catHeader.addEventListener('click', () => {
+        const isOpen = catDiv.classList.contains('is-open');
+        if (isOpen) {
+          catDiv.classList.remove('is-open');
+          catBody.style.height = catBody.scrollHeight + 'px';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            catBody.style.height = '0';
+          }));
+        } else {
+          catDiv.classList.add('is-open');
+          catBody.style.height = '0';
+          requestAnimationFrame(() => {
+            catBody.style.height = catBody.scrollHeight + 'px';
+            catBody.addEventListener('transitionend', () => {
+              if (catDiv.classList.contains('is-open')) catBody.style.height = 'auto';
+            }, { once: true });
+          });
+        }
+      });
+
+      /* ── FAQ items inside category body ── */
       items.forEach(faq => {
         const item = document.createElement('div');
         item.className = 'faq-item';
@@ -283,15 +319,27 @@
         btn.addEventListener('click', () => {
           const isOpen = item.classList.contains('is-open');
           item.classList.toggle('is-open');
-          answer.style.height = isOpen ? '0' : answer.scrollHeight + 'px';
+          if (isOpen) {
+            answer.style.height = answer.scrollHeight + 'px';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+              answer.style.height = '0';
+            }));
+          } else {
+            answer.style.height = answer.scrollHeight + 'px';
+            answer.addEventListener('transitionend', () => {
+              if (item.classList.contains('is-open')) answer.style.height = 'auto';
+            }, { once: true });
+          }
         });
 
         item.appendChild(btn);
         item.appendChild(answer);
-        section.appendChild(item);
+        catBody.appendChild(item);
       });
 
-      container.appendChild(section);
+      catDiv.appendChild(catHeader);
+      catDiv.appendChild(catBody);
+      container.appendChild(catDiv);
     });
 
     /* If there's a hash in the URL, open that item */
@@ -308,7 +356,12 @@
     if (!item || item.classList.contains('is-open')) return;
     item.classList.add('is-open');
     const answer = item.querySelector('.faq-answer');
-    if (answer) answer.style.height = answer.scrollHeight + 'px';
+    if (answer) {
+      answer.style.height = answer.scrollHeight + 'px';
+      answer.addEventListener('transitionend', () => {
+        if (item.classList.contains('is-open')) answer.style.height = 'auto';
+      }, { once: true });
+    }
   }
 
   /* Initial render */
@@ -321,6 +374,9 @@
   const resultsPanel  = document.getElementById('searchResults');
 
   if (!searchInput || !resultsPanel) return;
+
+  /* Prevent input blur when clicking inside results panel */
+  resultsPanel.addEventListener('mousedown', (e) => { e.preventDefault(); });
 
   /* Filter dataset: on masternotes page only masternotes items; on index all */
   function getSearchPool() {
@@ -372,11 +428,10 @@
         item.appendChild(catBadge);
 
         const handleClick = () => {
-          resultsPanel.hidden = true;
-          searchInput.value = '';
-
           if (isFaqPage) {
             /* Scroll to item on same page */
+            resultsPanel.hidden = true;
+            searchInput.value = '';
             const target = document.getElementById(faq.id);
             if (target) {
               openFaqItem(target);
@@ -385,8 +440,32 @@
               }, 50);
             }
           } else {
-            /* Navigate to masternotes.html with anchor */
-            window.location.href = './masternotes.html#' + faq.id;
+            /* Show answer inline in results panel */
+            resultsPanel.innerHTML = '';
+
+            const backBtn = document.createElement('button');
+            backBtn.className = 'search-back-btn';
+            backBtn.textContent = i18n[currentLang]['back'];
+            backBtn.addEventListener('click', () => {
+              performSearch(searchInput.value);
+            });
+
+            const answerView = document.createElement('div');
+            answerView.className = 'search-answer-view';
+
+            const questionEl = document.createElement('p');
+            questionEl.className = 'search-answer-question';
+            questionEl.textContent = currentLang === 'zh' ? faq.questionZh : faq.questionEn;
+
+            const answerEl = document.createElement('p');
+            answerEl.className = 'search-answer-text';
+            answerEl.textContent = currentLang === 'zh' ? faq.answerZh : faq.answerEn;
+
+            answerView.appendChild(questionEl);
+            answerView.appendChild(answerEl);
+            resultsPanel.appendChild(backBtn);
+            resultsPanel.appendChild(answerView);
+            resultsPanel.hidden = false;
           }
         };
 
