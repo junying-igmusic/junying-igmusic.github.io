@@ -321,6 +321,7 @@
         a.classList.add('is-active');
         const grp = a.closest('.mobile-nav-group');
         grp?.classList.add('is-open');
+        grp?.classList.add('is-active');
         const sub = grp?.querySelector('.mobile-nav-sub');
         if (sub) sub.style.height = sub.scrollHeight + 'px';
       }
