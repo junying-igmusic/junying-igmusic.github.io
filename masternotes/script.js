@@ -11,19 +11,19 @@
   const i18n = {
     zh: {
       'lang-btn':        'EN',
-      'waitlist-cta':    '加入等待名單',
+      'waitlist-cta':    '加入Beta測試',
       'waitlist-submit': '通知我',
       'waitlist-success':'已收到，敬請期待 ♪',
       'more-link':       '了解更多 →',
-      'join-waitlist':   '加入等待名單',
+      'join-waitlist':   '加入Beta測試',
     },
     en: {
       'lang-btn':        '繁中',
-      'waitlist-cta':    'Join Waitlist',
+      'waitlist-cta':    'Join Beta Testing',
       'waitlist-submit': 'Notify Me',
       'waitlist-success':'Got it — stay tuned ♪',
       'more-link':       'Learn more →',
-      'join-waitlist':   'Join Waitlist',
+      'join-waitlist':   'Join Beta Testing',
     },
   };
 
