@@ -380,7 +380,7 @@ body {
 }
 
 /* ── Navbar: dropdown (desktop) ─────────────────────────── */
-.nav-dropdown { position: relative; display: flex; align-items: center; }
+.nav-dropdown { position: relative; display: flex; align-items: center; height: 100%; }
 
 .nav-dropdown-trigger {
   display: flex;
