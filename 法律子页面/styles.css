@@ -41,8 +41,14 @@ body {
   transition: background 0.3s ease;
 }
 
-#nav-logo img { height: 28px; display: block; }
-.nav-logo-link { display: block; }
+#nav-logo img { width: 32px; height: auto; filter: brightness(0); display: block; }
+.nav-logo-link {
+  display: block;
+  text-decoration: none;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.nav-logo-link:hover { transform: scale(1.08); }
 
 .nav-links {
   display: flex;
@@ -659,6 +665,7 @@ a.mobile-nav-sub-link.is-active::before {
 }
 
 @media (hover: none) {
+  .nav-logo-link:hover { transform: none; }
   .lang-pill:hover {
     background: #ffffff;
     border-color: rgba(0,0,0,0.12);
