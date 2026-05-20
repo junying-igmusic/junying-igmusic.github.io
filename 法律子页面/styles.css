@@ -206,6 +206,14 @@ body {
 
 .accordion__icon { font-size: 18px; line-height: 1; }
 
+.accordion__app-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .accordion__chevron {
   color: var(--ink-faint);
   flex-shrink: 0;
