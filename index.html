@@ -148,62 +148,6 @@
 
     .nav-links a:hover { opacity: 0.45; }
 
-    /* Dropdown */
-    .nav-item {
-      position: relative;
-    }
-
-    .nav-dropdown {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-6px);
-      padding-top: 14px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .nav-dropdown-inner {
-      background: rgba(242, 242, 244, 0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: 12px;
-      padding: 6px;
-      min-width: 140px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
-    }
-
-    .nav-dropdown a:hover {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.8) !important;
-      opacity: 1 !important;
-    }
-
-    .nav-item:hover .nav-dropdown {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .nav-dropdown a {
-      display: block;
-      padding: 9px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      white-space: nowrap;
-      opacity: 1 !important;
-      transition: background 0.15s ease !important;
-    }
-
-    .nav-dropdown a:hover {
-      background: rgba(0, 0, 0, 0.05);
-      opacity: 1 !important;
-    }
-
     .nav-lang {
       margin-left: auto;
       display: flex;
@@ -1544,10 +1488,8 @@
       gap: 16px;
     }
     .footer-col-title {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
       color: rgba(255,255,255,0.9);
       margin: 0;
     }
@@ -1560,14 +1502,14 @@
       gap: 10px;
     }
     .footer-col-links a {
-      font-size: 14px;
+      font-size: 13px;
       color: rgba(255,255,255,0.48);
       text-decoration: none;
       transition: color 0.18s ease;
     }
     .footer-col-links a:hover { color: rgba(255,255,255,0.9); }
     .footer-link-dim {
-      font-size: 14px;
+      font-size: 13px;
       color: rgba(255,255,255,0.22);
     }
 
@@ -1611,15 +1553,6 @@
 
     @media (max-width: 768px) {
       html { scroll-behavior: smooth; }
-
-      /* Navbar pills — glass on mobile (matches flip-tag style) */
-      .lang-pill {
-        background: rgba(255, 255, 255, 0.22);
-        backdrop-filter: blur(20px) saturate(1.4);
-        -webkit-backdrop-filter: blur(20px) saturate(1.4);
-        border-color: rgba(255, 255, 255, 0.9);
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 2px 8px rgba(0,0,0,0.06);
-      }
 
       .nav-links    { display: none !important; }
       .nav-menu-btn { display: flex; align-items: center; }
@@ -1748,6 +1681,158 @@
       .btn-wish:hover { transform: none; }
     }
 
+    /* ── Navbar: dropdown (desktop) ─────────────────────────── */
+    .nav-dropdown { position: relative; display: flex; align-items: center; }
+
+    .nav-dropdown-trigger {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      color: #000;
+      opacity: 0.65;
+      padding: 0;
+      transition: opacity 0.2s;
+    }
+    .nav-dropdown-trigger:hover { opacity: 1; }
+
+    .nav-dd-chevron {
+      display: block;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .nav-dropdown:hover .nav-dd-chevron { transform: rotate(180deg); }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-4px);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(20px) saturate(1.6);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 6px;
+      min-width: 160px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      z-index: 200;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .nav-dd-item {
+      display: block;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: rgba(0,0,0,0.72);
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    a.nav-dd-item:hover { background: rgba(0,0,0,0.04); color: rgba(0,0,0,0.9); }
+    .nav-dd-item--dim { color: rgba(0,0,0,0.28); cursor: default; }
+    .nav-dd-item--dim:hover { background: none; }
+
+    /* Active: parent gets black underline */
+    .nav-links a.is-active,
+    .nav-dropdown-trigger.is-active {
+      opacity: 1 !important;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: rgba(0,0,0,0.8);
+      text-decoration-thickness: 1.5px;
+    }
+    /* Active: sub-item gets dark-blue dot */
+    a.nav-dd-item.is-active { color: rgba(0,0,0,0.85); }
+    a.nav-dd-item.is-active::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #1a54d8;
+      margin-right: 8px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ── Mobile nav: accordion ───────────────────────────────── */
+    .mobile-nav-group { display: flex; flex-direction: column; }
+
+    .mobile-nav-group-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 11px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 15px;
+      color: #000;
+      opacity: 0.75;
+      text-align: left;
+      transition: opacity 0.15s;
+    }
+    .mobile-nav-group-btn:hover { opacity: 1; }
+
+    .mobile-nav-chevron {
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+      opacity: 0.4;
+    }
+    .mobile-nav-group.is-open .mobile-nav-chevron { transform: rotate(180deg); }
+
+    .mobile-nav-sub {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .mobile-nav-group.is-open .mobile-nav-sub { max-height: 200px; }
+
+    .mobile-nav-sub-link {
+      display: block;
+      padding: 9px 24px 9px 40px;
+      font-size: 14px;
+      color: rgba(0,0,0,0.7);
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+    a.mobile-nav-sub-link:hover { opacity: 1; }
+    .mobile-nav-sub-link--dim { color: rgba(0,0,0,0.3); cursor: default; }
+
+    /* Mobile active */
+    .mobile-nav-link.is-active { opacity: 1; font-weight: 600; }
+    a.mobile-nav-sub-link.is-active { opacity: 1; font-weight: 600; color: rgba(0,0,0,0.85); }
+    a.mobile-nav-sub-link.is-active::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #1a54d8;
+      margin-right: 8px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
   </style>
 </head>
 <body>
@@ -1769,19 +1854,33 @@
   <!-- Navbar -->
   <nav id="navbar">
     <div id="nav-logo">
-      <img src="加载动画素材包/ig_logo_solid.svg" alt="炎上音乐科技">
+      <a href="/?skip" class="nav-logo-link" aria-label="炎上音樂科技首頁">
+        <img src="加载动画素材包/ig_logo_solid.svg" alt="炎上音樂科技">
+      </a>
     </div>
     <div class="nav-links">
-      <a href="#" data-i18n="nav-home">首頁</a>
-      <div class="nav-item">
-        <a href="#" data-i18n="nav-products">產品</a>
-        <div class="nav-dropdown">
-          <div class="nav-dropdown-inner">
-            <a href="masternotes/">Masternotes</a>
-          </div>
+      <a href="/?skip" class="nav-link" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" data-nav-section="products">
+          <span data-i18n-zh="產品" data-i18n-en="Products">產品</span>
+          <svg class="nav-dd-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="masternotes/" class="nav-dd-item">Masternotes</a>
+          <span class="nav-dd-item nav-dd-item--dim" data-i18n-zh="SonateX（即將推出）" data-i18n-en="SonateX (Coming Soon)">SonateX（即將推出）</span>
         </div>
       </div>
-      <a href="contact/" data-i18n="nav-contact">聯繫我們</a>
+      <a href="contact/" class="nav-link" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" data-nav-section="resources">
+          <span data-i18n-zh="資源" data-i18n-en="Resources">資源</span>
+          <svg class="nav-dd-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="support/" class="nav-dd-item" data-i18n-zh="支援" data-i18n-en="Support">支援</a>
+          <a href="法律子页面/" class="nav-dd-item" data-i18n-zh="法律" data-i18n-en="Legal">法律</a>
+        </div>
+      </div>
     </div>
     <div class="nav-lang">
       <button class="lang-pill" id="lang-pill">EN</button>
@@ -1797,9 +1896,28 @@
 
   <!-- Mobile nav menu -->
   <div id="mobile-nav" class="mobile-nav">
-    <a href="#" data-i18n="nav-home" class="mobile-nav-link">首頁</a>
-    <a href="masternotes/" class="mobile-nav-link">Masternotes</a>
-    <a href="contact/" class="mobile-nav-link" data-i18n="nav-contact">聯繫我們</a>
+    <a href="/?skip" class="mobile-nav-link" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn">
+        <span data-i18n-zh="產品" data-i18n-en="Products">產品</span>
+        <svg class="mobile-nav-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="mobile-nav-sub">
+        <a href="masternotes/" class="mobile-nav-sub-link">Masternotes</a>
+        <span class="mobile-nav-sub-link mobile-nav-sub-link--dim" data-i18n-zh="SonateX（即將推出）" data-i18n-en="SonateX (Coming Soon)">SonateX（即將推出）</span>
+      </div>
+    </div>
+    <a href="contact/" class="mobile-nav-link" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a>
+    <div class="mobile-nav-group">
+      <button class="mobile-nav-group-btn">
+        <span data-i18n-zh="資源" data-i18n-en="Resources">資源</span>
+        <svg class="mobile-nav-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="mobile-nav-sub">
+        <a href="support/" class="mobile-nav-sub-link" data-i18n-zh="支援" data-i18n-en="Support">支援</a>
+        <a href="法律子页面/" class="mobile-nav-sub-link" data-i18n-zh="法律" data-i18n-en="Legal">法律</a>
+      </div>
+    </div>
   </div>
 
   <!-- Hero -->
@@ -2240,6 +2358,71 @@
         link.addEventListener('click', () => mobileNav.classList.remove('open'));
       });
     }
+
+    // ── Active nav state ────────────────────────────────────────
+    (() => {
+      const p = location.pathname;
+      const isHome      = p === '/' || p === '/index.html';
+      const isMaster    = p.startsWith('/masternotes');
+      const isContact   = p.startsWith('/contact');
+      const isLegal     = p.includes('法律子页面') || p.includes('%E6%B3%95%E5%BE%8B%E5%AD%90%E9%A1%B5%E9%9D%A2');
+      const isSupport   = p.startsWith('/support');
+
+      // Desktop: plain links
+      document.querySelectorAll('.nav-links .nav-link').forEach(el => {
+        if (el.tagName !== 'A') return;
+        const h = el.getAttribute('href') || '';
+        if (isHome && (h.includes('/?skip') || h === '/')) el.classList.add('is-active');
+        if (isContact && h.includes('/contact')) el.classList.add('is-active');
+      });
+      // Desktop: dropdown triggers
+      const triggers = document.querySelectorAll('.nav-dropdown-trigger');
+      triggers.forEach(btn => {
+        const sec = btn.dataset.navSection;
+        if (isMaster && sec === 'products')              btn.classList.add('is-active');
+        if ((isLegal || isSupport) && sec === 'resources') btn.classList.add('is-active');
+      });
+      // Desktop: sub-items
+      document.querySelectorAll('a.nav-dd-item').forEach(a => {
+        const h = a.getAttribute('href') || '';
+        if (isMaster  && h.includes('masternotes'))  a.classList.add('is-active');
+        if (isLegal   && (h.includes('法律子页面') || h.includes('%E6%B3%95'))) a.classList.add('is-active');
+        if (isSupport && h.includes('support'))      a.classList.add('is-active');
+      });
+      // Mobile: plain links
+      document.querySelectorAll('.mobile-nav-link').forEach(el => {
+        if (el.tagName !== 'A') return;
+        const h = el.getAttribute('href') || '';
+        if (isHome    && (h.includes('/?skip') || h === '/')) el.classList.add('is-active');
+        if (isContact && h.includes('/contact'))               el.classList.add('is-active');
+      });
+      // Mobile: sub-links + auto-open parent
+      document.querySelectorAll('a.mobile-nav-sub-link').forEach(a => {
+        const h = a.getAttribute('href') || '';
+        let hit = false;
+        if (isMaster  && h.includes('masternotes'))  hit = true;
+        if (isLegal   && (h.includes('法律子页面') || h.includes('%E6%B3%95'))) hit = true;
+        if (isSupport && h.includes('support'))      hit = true;
+        if (hit) {
+          a.classList.add('is-active');
+          a.closest('.mobile-nav-group')?.classList.add('is-open');
+        }
+      });
+    })();
+
+    // ── Mobile nav accordion ────────────────────────────────────
+    document.querySelectorAll('.mobile-nav-group-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        btn.closest('.mobile-nav-group').classList.toggle('is-open');
+      });
+    });
+    // Also close mobile-nav sub-links should close the nav
+    document.querySelectorAll('a.mobile-nav-sub-link').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('mobile-nav')?.classList.remove('open');
+      });
+    });
 
     let savedRect = null;
 

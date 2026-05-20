@@ -20,9 +20,28 @@
     </a>
   </div>
   <div class="nav-links">
-    <a href="/?skip"          data-i18n-zh="首頁"        data-i18n-en="Home">首頁</a>
-    <a href="../masternotes/" data-i18n-zh="Masternotes" data-i18n-en="Masternotes">Masternotes</a>
-    <a href="../contact/"     data-i18n-zh="聯繫我們"    data-i18n-en="Contact">聯繫我們</a>
+    <a href="/?skip" class="nav-link" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+    <div class="nav-dropdown">
+      <button class="nav-link nav-dropdown-trigger" data-nav-section="products">
+        <span data-i18n-zh="產品" data-i18n-en="Products">產品</span>
+        <svg class="nav-dd-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dropdown-menu">
+        <a href="/masternotes/" class="nav-dd-item">Masternotes</a>
+        <span class="nav-dd-item nav-dd-item--dim" data-i18n-zh="SonateX（即將推出）" data-i18n-en="SonateX (Coming Soon)">SonateX（即將推出）</span>
+      </div>
+    </div>
+    <a href="/contact/" class="nav-link" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a>
+    <div class="nav-dropdown">
+      <button class="nav-link nav-dropdown-trigger" data-nav-section="resources">
+        <span data-i18n-zh="資源" data-i18n-en="Resources">資源</span>
+        <svg class="nav-dd-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dropdown-menu">
+        <a href="/support/" class="nav-dd-item" data-i18n-zh="支援" data-i18n-en="Support">支援</a>
+        <a href="/法律子页面/" class="nav-dd-item" data-i18n-zh="法律" data-i18n-en="Legal">法律</a>
+      </div>
+    </div>
   </div>
   <div class="nav-lang">
     <button class="lang-pill" id="lang-pill">EN</button>
@@ -37,9 +56,28 @@
 </nav>
 
 <div id="mobile-nav" class="mobile-nav">
-  <a href="/?skip"          class="mobile-nav-link" data-i18n-zh="首頁"     data-i18n-en="Home">首頁</a>
-  <a href="../masternotes/" class="mobile-nav-link">Masternotes</a>
-  <a href="../contact/"     class="mobile-nav-link" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a>
+  <a href="/?skip" class="mobile-nav-link" data-i18n-zh="首頁" data-i18n-en="Home">首頁</a>
+  <div class="mobile-nav-group">
+    <button class="mobile-nav-group-btn">
+      <span data-i18n-zh="產品" data-i18n-en="Products">產品</span>
+      <svg class="mobile-nav-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mobile-nav-sub">
+      <a href="/masternotes/" class="mobile-nav-sub-link">Masternotes</a>
+      <span class="mobile-nav-sub-link mobile-nav-sub-link--dim" data-i18n-zh="SonateX（即將推出）" data-i18n-en="SonateX (Coming Soon)">SonateX（即將推出）</span>
+    </div>
+  </div>
+  <a href="/contact/" class="mobile-nav-link" data-i18n-zh="聯繫我們" data-i18n-en="Contact">聯繫我們</a>
+  <div class="mobile-nav-group">
+    <button class="mobile-nav-group-btn">
+      <span data-i18n-zh="資源" data-i18n-en="Resources">資源</span>
+      <svg class="mobile-nav-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mobile-nav-sub">
+      <a href="/support/" class="mobile-nav-sub-link" data-i18n-zh="支援" data-i18n-en="Support">支援</a>
+      <a href="/法律子页面/" class="mobile-nav-sub-link" data-i18n-zh="法律" data-i18n-en="Legal">法律</a>
+    </div>
+  </div>
 </div>
 
 <main class="legal-page">

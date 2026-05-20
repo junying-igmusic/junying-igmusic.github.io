@@ -266,4 +266,69 @@
       }
     });
   }
+
+  // ── Active nav state ────────────────────────────────────────
+  (() => {
+    const p = location.pathname;
+    const isHome      = p === '/' || p === '/index.html';
+    const isMaster    = p.startsWith('/masternotes');
+    const isContact   = p.startsWith('/contact');
+    const isLegal     = p.includes('法律子页面') || p.includes('%E6%B3%95%E5%BE%8B%E5%AD%90%E9%A1%B5%E9%9D%A2');
+    const isSupport   = p.startsWith('/support');
+
+    // Desktop: plain links
+    document.querySelectorAll('.nav-links .nav-link').forEach(el => {
+      if (el.tagName !== 'A') return;
+      const h = el.getAttribute('href') || '';
+      if (isHome && (h.includes('/?skip') || h === '/')) el.classList.add('is-active');
+      if (isContact && h.includes('/contact')) el.classList.add('is-active');
+    });
+    // Desktop: dropdown triggers
+    const triggers = document.querySelectorAll('.nav-dropdown-trigger');
+    triggers.forEach(btn => {
+      const sec = btn.dataset.navSection;
+      if (isMaster && sec === 'products')              btn.classList.add('is-active');
+      if ((isLegal || isSupport) && sec === 'resources') btn.classList.add('is-active');
+    });
+    // Desktop: sub-items
+    document.querySelectorAll('a.nav-dd-item').forEach(a => {
+      const h = a.getAttribute('href') || '';
+      if (isMaster  && h.includes('masternotes'))  a.classList.add('is-active');
+      if (isLegal   && (h.includes('法律子页面') || h.includes('%E6%B3%95'))) a.classList.add('is-active');
+      if (isSupport && h.includes('support'))      a.classList.add('is-active');
+    });
+    // Mobile: plain links
+    document.querySelectorAll('.mobile-nav-link').forEach(el => {
+      if (el.tagName !== 'A') return;
+      const h = el.getAttribute('href') || '';
+      if (isHome    && (h.includes('/?skip') || h === '/')) el.classList.add('is-active');
+      if (isContact && h.includes('/contact'))               el.classList.add('is-active');
+    });
+    // Mobile: sub-links + auto-open parent
+    document.querySelectorAll('a.mobile-nav-sub-link').forEach(a => {
+      const h = a.getAttribute('href') || '';
+      let hit = false;
+      if (isMaster  && h.includes('masternotes'))  hit = true;
+      if (isLegal   && (h.includes('法律子页面') || h.includes('%E6%B3%95'))) hit = true;
+      if (isSupport && h.includes('support'))      hit = true;
+      if (hit) {
+        a.classList.add('is-active');
+        a.closest('.mobile-nav-group')?.classList.add('is-open');
+      }
+    });
+  })();
+
+  // ── Mobile nav accordion ────────────────────────────────────
+  document.querySelectorAll('.mobile-nav-group-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      btn.closest('.mobile-nav-group').classList.toggle('is-open');
+    });
+  });
+  // Also close mobile-nav sub-links should close the nav
+  document.querySelectorAll('a.mobile-nav-sub-link').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('mobile-nav')?.classList.remove('open');
+    });
+  });
 })();
