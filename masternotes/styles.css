@@ -1230,7 +1230,7 @@ a.mobile-nav-sub-link.is-active::before {
   .panel {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    background: linear-gradient(160deg, #ffffff 0%, #f3f1ee 100%);
+    background: linear-gradient(160deg, #ffffff 0%, #f4f4f2 100%);
   }
 
   /* Solid buttons on warm gradient background */
@@ -1240,9 +1240,10 @@ a.mobile-nav-sub-link.is-active::before {
     border-color: rgba(255,255,255,0.08);
   }
   .hero-block__ctas .btn-contact {
-    background: rgba(255, 252, 246, 0.85);
-    border-color: rgba(190, 170, 145, 0.45);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.10);
+    color: rgba(0, 0, 0, 0.72);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
   .panel__inner {
     padding: 28px 22px;
@@ -1344,7 +1345,7 @@ a.mobile-nav-sub-link.is-active::before {
   .feature { padding: 36px 0; }
   .feature__title { font-size: 22px; }
 
-  .demo, .showcase, .faq, .waitlist { padding-top: 60px; padding-bottom: 60px; }
+  .demo, .showcase, .faq, .waitlist { padding-top: 90px; padding-bottom: 60px; }
   .bubble--user, .bubble--ai { max-width: 100%; }
   .bubble--ai { padding: 16px; }
 
