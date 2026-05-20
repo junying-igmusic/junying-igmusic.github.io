@@ -453,7 +453,7 @@ a.mobile-nav-sub-link.is-active::before {
    ============================================================ */
 .support-hero {
   background: #f2f2f4;
-  padding: calc(64px + 80px) 24px 80px;
+  padding: calc(64px + 120px) 24px 120px;
 }
 
 .support-hero-inner {
@@ -1009,7 +1009,7 @@ a.mobile-nav-sub-link.is-active::before {
   .footer-bottom { padding: 16px 0 0; margin-top: 16px; }
 
   .support-hero {
-    padding: calc(64px + 56px) 20px 60px;
+    padding: calc(64px + 80px) 20px 80px;
   }
 
   .support-products {
