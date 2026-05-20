@@ -28,11 +28,10 @@ body {
 #navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 56px;
+  height: 64px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
+  padding: 0 32px;
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(20px) saturate(1.6);
   -webkit-backdrop-filter: blur(20px) saturate(1.6);
@@ -41,7 +40,7 @@ body {
   transition: background 0.3s ease;
 }
 
-#nav-logo img { width: 32px; height: auto; filter: brightness(0); display: block; }
+#nav-logo img { width: 32px; height: auto; display: block; }
 .nav-logo-link {
   display: block;
   text-decoration: none;
@@ -51,8 +50,11 @@ body {
 .nav-logo-link:hover { transform: scale(1.08); }
 
 .nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 28px;
+  gap: 40px;
   height: 100%;
   align-items: stretch;
 }
@@ -71,7 +73,7 @@ body {
 }
 .nav-links a:hover { opacity: 1; }
 
-.nav-lang { display: flex; align-items: center; gap: 8px; }
+.nav-lang { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 
 .lang-pill {
   height: 28px;
@@ -107,7 +109,7 @@ body {
 .mobile-nav {
   display: none;
   position: fixed;
-  top: 56px; left: 0; right: 0;
+  top: 64px; left: 0; right: 0;
   flex-direction: column;
   padding: 12px 0 16px;
   background: rgba(255, 255, 255, 0.62);
@@ -139,7 +141,7 @@ body {
 
 /* ── Page layout ──────────────────────────────────────────── */
 .legal-page {
-  padding-top: 56px;
+  padding-top: 64px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
