@@ -1093,6 +1093,23 @@ a.mobile-nav-sub-link.is-active::before {
   margin: 16px 0;
 }
 
+/* Key-points summary list (top of privacy policy) */
+.doc-key-points { margin: 0 0 28px; }
+.doc-key-points ul { list-style: none; padding: 0; margin: 0; }
+.doc-key-points ul li {
+  padding: 5px 0 5px 20px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  position: relative;
+}
+.doc-key-points ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+}
+
 /* Responsive: scroll tables on small screens */
 @media (max-width: 768px) {
   .legal-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
