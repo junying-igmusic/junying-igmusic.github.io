@@ -106,8 +106,374 @@
 
     <!-- Center: Document content -->
     <article class="legal-content">
-      <div class="legal-doc__body">
-      <!-- 將 Masternotes 隱私政策內容貼於此處 / Paste Masternotes Privacy Policy here -->
+<div class="legal-doc__body">
+
+      <!-- ══════════════ 繁體中文 ══════════════ -->
+      <div class="doc-content is-active" data-lang="zh">
+        <p class="doc-meta">生效日期：2025 年 6 月 1 日 · 炎上音樂科技有限公司</p>
+
+        <h2>1. 資料控制者</h2>
+        <table class="legal-table info-table">
+          <tbody>
+            <tr><td>公司</td><td>炎上音樂科技有限公司（Ignition Musictech Limited）</td></tr>
+            <tr><td>司法管轄區</td><td>香港特別行政區</td></tr>
+            <tr><td>聯絡方式</td><td><a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a></td></tr>
+            <tr><td>政策網址</td><td><a href="https://igmusictech.com/legal/masternotes-privacy/" target="_blank" rel="noopener">https://igmusictech.com/legal/masternotes-privacy/</a></td></tr>
+          </tbody>
+        </table>
+
+        <h2>2. 我們收集的資料</h2>
+
+        <h3>2.1 帳號與身份資料</h3>
+        <table class="legal-table">
+          <thead>
+            <tr><th>資料</th><th>用途</th><th>儲存位置</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>用戶 ID（UUID）</td><td>帳號識別</td><td>Supabase Auth</td></tr>
+            <tr><td>電子郵件地址</td><td>登入及通訊</td><td>Supabase Auth</td></tr>
+            <tr><td>顯示名稱（選填）</td><td>個性化設定</td><td>Supabase Auth</td></tr>
+            <tr><td>頭像圖片（選填）</td><td>個人資料顯示</td><td>Supabase Storage</td></tr>
+            <tr><td>語言偏好</td><td>介面本地化</td><td>Supabase Auth</td></tr>
+            <tr><td>密碼（已雜湊）</td><td>僅用於身份驗證</td><td>Supabase Auth（我們無法查閱）</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.2 對話與訊息資料</h3>
+        <p>我們儲存您產生的所有對話及訊息，並與您的帳號關聯。</p>
+        <table class="legal-table">
+          <thead>
+            <tr><th>資料</th><th>說明</th><th>法律依據（GDPR）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>對話元數據</td><td>標題、篩選條件、時間戳記</td><td>合約履行 — 第 6(1)(b) 條</td></tr>
+            <tr><td>訊息內容</td><td>用戶及 AI 訊息的完整文字</td><td>合約履行 — 第 6(1)(b) 條</td></tr>
+            <tr><td>AI 引用資料</td><td>所參考的知識庫條目</td><td>合約履行 — 第 6(1)(b) 條</td></tr>
+            <tr><td>請求狀態</td><td>串流狀態、錯誤訊息</td><td>合法利益 — 第 6(1)(f) 條</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.3 AI 自動建立的用戶畫像</h3>
+        <p class="doc-notice">在您的對話過程中，我們的 AI 會自動提取並儲存有關您音樂偏好、品味及對特定作品或藝術家熟悉程度的相關事實——此過程無需您進行任何手動操作。這些推斷出的事實將用於個性化您未來的對話。此舉構成 GDPR 第 22 條所界定的自動化分析，您有權提出反對。</p>
+        <table class="legal-table">
+          <thead>
+            <tr><th>欄位</th><th>內容</th><th>示例</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>fact（事實）</td><td>偏好描述</td><td>偏好布倫德爾的錄音</td></tr>
+            <tr><td>category（類別）</td><td>preference（偏好）/ taste（品味）/ familiarity（熟悉度）/ other（其他）</td><td>preference</td></tr>
+            <tr><td>confidence（置信度）</td><td>AI 置信分數 0.0–1.0</td><td>0.85</td></tr>
+          </tbody>
+        </table>
+        <p><strong>反對權：</strong>您可隨時發送電子郵件至 <a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a>，要求刪除所有已推斷的個人資料。我們將在 30 天內予以回應。</p>
+
+        <h3>2.4 使用及技術資料</h3>
+        <table class="legal-table">
+          <thead>
+            <tr><th>資料</th><th>用途</th><th>保留期限</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>請求頻率限制狀態</td><td>防止濫用</td><td>滾動 7 天窗口</td></tr>
+            <tr><td>LLM 使用日誌（僅限管理員）</td><td>成本管理</td><td>12 個月後自動清除</td></tr>
+            <tr><td>IP 位址</td><td>匿名用戶請求頻率限制</td><td>不作持久性儲存</td></tr>
+            <tr><td>JWT 令牌</td><td>會話身份驗證</td><td>iOS Keychain，與會話綁定</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.5 我們不收集的資料</h3>
+        <p>我們不收集以下資料：裝置識別碼（IDFA/IDFV）、位置資料、推播通知令牌、相機或麥克風資料、聯絡人資訊或支付卡資訊。目前版本未整合任何第三方分析 SDK。</p>
+
+        <h2>3. 法律依據（GDPR）</h2>
+        <table class="legal-table">
+          <thead>
+            <tr><th>處理活動</th><th>法律依據</th><th>GDPR 條款</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>帳號建立及身份驗證</td><td>合約履行</td><td>第 6(1)(b) 條</td></tr>
+            <tr><td>儲存對話及訊息</td><td>合約履行</td><td>第 6(1)(b) 條</td></tr>
+            <tr><td>AI 個性化分析</td><td>合法利益</td><td>第 6(1)(f) 條</td></tr>
+            <tr><td>安全及防止濫用</td><td>合法利益</td><td>第 6(1)(f) 條</td></tr>
+            <tr><td>LLM 使用日誌（管理員）</td><td>合法利益</td><td>第 6(1)(f) 條</td></tr>
+          </tbody>
+        </table>
+
+        <h2>4. 第三方數據處理者</h2>
+        <p>您的訊息內容將被傳輸至以下 AI 服務商以生成回應。每家服務商均依據數據處理協議（DPA）作為數據處理者。我們不會將您的資料出售給任何第三方。</p>
+        <table class="legal-table">
+          <thead>
+            <tr><th>服務商</th><th>服務</th><th>傳輸的資料</th><th>隱私政策</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>OpenAI</td><td>LLM 及嵌入向量</td><td>用戶訊息內容</td><td><a href="https://openai.com/policies/privacy" target="_blank" rel="noopener">openai.com/policies/privacy</a></td></tr>
+            <tr><td>Anthropic</td><td>LLM 對話（Claude）</td><td>用戶訊息內容</td><td><a href="https://anthropic.com/privacy" target="_blank" rel="noopener">anthropic.com/privacy</a></td></tr>
+            <tr><td>Google Gemini</td><td>LLM 對話（Gemini Flash）</td><td>用戶訊息內容</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td></tr>
+            <tr><td>Supabase</td><td>資料庫、身份驗證、儲存</td><td>所有用戶及內容資料</td><td><a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a></td></tr>
+            <tr><td>Wikimedia Foundation（維基百科）</td><td>透過 Wikipedia API 進行即時知識搜尋</td><td>AI 生成的搜尋關鍵詞（不含帳號資料）</td><td><a href="https://foundation.wikimedia.org/wiki/Privacy_policy" target="_blank" rel="noopener">foundation.wikimedia.org/wiki/Privacy_policy</a></td></tr>
+          </tbody>
+        </table>
+        <p><strong>Wikipedia API 使用說明：</strong>當您的查詢所需資訊無法從我們的內部知識庫中獲取時，我們的 AI 可能會將從您對話中衍生出的搜尋關鍵詞傳送至 Wikipedia API（由 Wikimedia Foundation 運營），以檢索相關百科內容。傳輸的僅限搜尋關鍵詞，不包含任何帳號識別資訊或個人資料。Wikipedia 內容依據 Creative Commons 姓名標示-相同方式分享 4.0（CC BY-SA 4.0）授權；應用程式始終向用戶提供來源鏈接。</p>
+
+        <h2>5. 資料保留</h2>
+        <table class="legal-table">
+          <thead>
+            <tr><th>資料類別</th><th>保留期限</th><th>刪除觸發條件</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>帳號及身份資料</td><td>帳號存續期間</td><td>帳號刪除請求</td></tr>
+            <tr><td>對話及訊息</td><td>帳號存續期間</td><td>帳號刪除請求</td></tr>
+            <tr><td>AI 畫像事實</td><td>帳號存續期間</td><td>帳號或個人資料刪除請求</td></tr>
+            <tr><td>LLM 使用日誌（管理員）</td><td>12 個月</td><td>自動清除</td></tr>
+            <tr><td>請求頻率限制狀態</td><td>7 天滾動窗口</td><td>自動過期</td></tr>
+            <tr><td>IP 位址</td><td>不予儲存</td><td>從不持久化</td></tr>
+          </tbody>
+        </table>
+
+        <h2>6. 您的權利</h2>
+        <table class="legal-table">
+          <thead>
+            <tr><th>權利</th><th>說明</th><th>適用法律</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>查閱權</td><td>獲取您個人資料的副本</td><td>GDPR / CCPA / PDPO</td></tr>
+            <tr><td>更正權</td><td>更正不準確的資料</td><td>GDPR / PDPO</td></tr>
+            <tr><td>刪除權</td><td>要求刪除您的資料</td><td>GDPR / CCPA / PDPO</td></tr>
+            <tr><td>資料可攜權</td><td>以機器可讀格式接收資料</td><td>GDPR</td></tr>
+            <tr><td>反對分析權</td><td>反對 AI 分析及自動化處理</td><td>GDPR 第 21 條</td></tr>
+            <tr><td>拒絕出售資料</td><td>我們不出售資料——此權利自動獲得滿足</td><td>CCPA</td></tr>
+          </tbody>
+        </table>
+        <p><strong>行使方式：</strong>請發送電子郵件至 <a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a>。我們將在 30 天內予以回應。您亦可向當地數據保護機構提出投訴（如英國的 ICO，或相關歐盟監管機構）。</p>
+
+        <h2>7. 最低年齡</h2>
+        <p>本服務適用於 16 歲及以上的用戶。我們不會故意收集 16 歲以下人士的個人資料。若您認為我們已收集了未成年人的資料，請立即通過 <a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a> 與我們聯繫，我們將立即予以刪除。</p>
+
+        <h2>8. 資料安全</h2>
+        <p>我們採取適當的技術及組織措施，包括：對所有用戶資料表實施行級安全（RLS）；JWT 令牌儲存於 iOS Keychain；加密密碼儲存；基於路徑的上傳文件隔離儲存；伺服器端記憶體快取於重啟時清除。</p>
+
+        <h2>9. 國際資料傳輸</h2>
+        <p>當您的訊息由 OpenAI、Anthropic 或 Google 處理時，資料可能會被傳輸至美國並在當地進行處理。此類傳輸受各服務商包含歐盟標準合約條款（SCC）的 DPA 約束。</p>
+
+        <h2>10. 未來功能及第三方登錄</h2>
+        <p>我們未來可能推出以下功能。在推出時，本政策將予以更新，並提前至少 14 天通知用戶。</p>
+
+        <h3>10.1 應用程式內購及訂閱</h3>
+        <p>我們可能推出透過 Apple 應用程式內購基礎設施處理的付費訂閱方案。訂閱相關資料（方案類型、續訂狀態）將儲存於您的帳號中。我們不會接收或儲存支付卡資訊——所有付款均由 Apple 處理。</p>
+
+        <h3>10.2 第三方登錄</h3>
+        <p>我們可能提供第三方身份驗證選項。依據 Apple App Store 指引，在 iOS 設備上，「以 Apple 帳號登入」將始終與其他社交登入選項一同提供。</p>
+        <table class="legal-table">
+          <thead>
+            <tr><th>服務商</th><th>接收的資料</th><th>備注</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>以 Apple 帳號登入</td><td>姓名（選填，由用戶控制）、電子郵件或 Apple 中繼電子郵件、唯一 Apple ID</td><td>Apple 可能以中繼地址取代真實電子郵件</td></tr>
+            <tr><td>其他社交登入（待定）</td><td>姓名、電子郵件地址、個人資料圖片、服務商用戶 ID</td><td>僅基本個人資料；不存取聯絡人、帖子或其他帳號資料</td></tr>
+          </tbody>
+        </table>
+        <p>從第三方登錄服務商接收的所有資料均儲存於 Supabase Auth，並受本政策所述的相同保護措施約束。您可隨時透過 Apple ID 設定或相應服務商的帳號設定撤銷第三方登錄存取權限。</p>
+
+        <h3>10.3 使用分析</h3>
+        <p>我們未來可能整合使用分析功能，以改善 AI 個性化及產品體驗。如予引入，分析服務商將在本政策中予以披露，我們將向您提供適當通知，並在法律要求時提供退出選項。</p>
+
+        <h2>11. 政策變更</h2>
+        <p>我們可能不時更新本隱私政策。重大變更將透過應用程式內通知或電子郵件傳達，並在生效前至少 14 天發出通知。最新版本始終可在以下網址查閱：<a href="https://igmusictech.com/legal/masternotes-privacy/" target="_blank" rel="noopener">https://igmusictech.com/legal/masternotes-privacy/</a></p>
+
+        <h2>12. 適用法律及聯絡方式</h2>
+        <p>本隱私政策受香港特別行政區法律管轄，包括《個人資料（私隱）條例》（第 486 章）。對於歐盟/歐洲經濟區及英國用戶，GDPR 及英國 GDPR 亦額外適用。</p>
+        <table class="legal-table info-table">
+          <tbody>
+            <tr><td>資料控制者</td><td>炎上音樂科技有限公司（Ignition Musictech Limited）</td></tr>
+            <tr><td>司法管轄區</td><td>香港特別行政區</td></tr>
+            <tr><td>聯絡方式</td><td><a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a></td></tr>
+            <tr><td>政策網址</td><td><a href="https://igmusictech.com/legal/masternotes-privacy/" target="_blank" rel="noopener">https://igmusictech.com/legal/masternotes-privacy/</a></td></tr>
+            <tr><td>生效日期</td><td>2025-06-01</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ══════════════ English ══════════════ -->
+      <div class="doc-content" data-lang="en">
+        <p class="doc-meta">Effective: 1 June 2025 · Ignition Musictech Limited</p>
+
+        <h2>1. Data Controller</h2>
+        <table class="legal-table info-table">
+          <tbody>
+            <tr><td>Company</td><td>Ignition Musictech Limited (炎上音樂科技有限公司)</td></tr>
+            <tr><td>Jurisdiction</td><td>Hong Kong Special Administrative Region</td></tr>
+            <tr><td>Contact</td><td><a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a></td></tr>
+            <tr><td>Policy URL</td><td><a href="https://igmusictech.com/legal/masternotes-privacy/" target="_blank" rel="noopener">https://igmusictech.com/legal/masternotes-privacy/</a></td></tr>
+          </tbody>
+        </table>
+
+        <h2>2. Data We Collect</h2>
+
+        <h3>2.1 Account &amp; Identity Data</h3>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Data</th><th>Purpose</th><th>Storage</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>User ID (UUID)</td><td>Account identification</td><td>Supabase Auth</td></tr>
+            <tr><td>Email address</td><td>Login &amp; communication</td><td>Supabase Auth</td></tr>
+            <tr><td>Display name (optional)</td><td>Personalisation</td><td>Supabase Auth</td></tr>
+            <tr><td>Avatar image (optional)</td><td>Profile display</td><td>Supabase Storage</td></tr>
+            <tr><td>Language preference</td><td>UI localisation</td><td>Supabase Auth</td></tr>
+            <tr><td>Password (hashed)</td><td>Authentication only</td><td>Supabase Auth (not visible to us)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.2 Conversation &amp; Message Data</h3>
+        <p>We store all conversations and messages you generate, linked to your account.</p>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Data</th><th>Description</th><th>Legal Basis (GDPR)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Conversation metadata</td><td>Title, filters, timestamps</td><td>Contract — Art. 6(1)(b)</td></tr>
+            <tr><td>Message content</td><td>Full text of user &amp; AI messages</td><td>Contract — Art. 6(1)(b)</td></tr>
+            <tr><td>AI citations</td><td>Knowledge base entries referenced</td><td>Contract — Art. 6(1)(b)</td></tr>
+            <tr><td>Request status</td><td>Streaming state, errors</td><td>Legitimate interest — Art. 6(1)(f)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.3 AI-Generated User Profile (Automated Profiling)</h3>
+        <p class="doc-notice">During your conversations, our AI automatically extracts and stores facts about your musical preferences, taste, and familiarity with works or artists — without any manual action on your part. These inferred facts personalise your future conversations. This constitutes automated profiling under GDPR Article 22, and you have the right to object.</p>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Field</th><th>Content</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>fact</td><td>Preference description</td><td>Prefers Brendel recordings</td></tr>
+            <tr><td>category</td><td>preference / taste / familiarity / other</td><td>preference</td></tr>
+            <tr><td>confidence</td><td>AI confidence score 0.0–1.0</td><td>0.85</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Right to Object:</strong> Email <a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a> to request deletion of all inferred profile data at any time. We will respond within 30 days.</p>
+
+        <h3>2.4 Usage &amp; Technical Data</h3>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Data</th><th>Purpose</th><th>Retention</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Rate limit state</td><td>Abuse prevention</td><td>Rolling 7-day window</td></tr>
+            <tr><td>LLM usage logs (admin only)</td><td>Cost management</td><td>12 months then purged</td></tr>
+            <tr><td>IP address</td><td>Anonymous user rate limiting</td><td>Not persisted</td></tr>
+            <tr><td>JWT tokens</td><td>Session authentication</td><td>iOS Keychain, session-bound</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.5 Data We Do NOT Collect</h3>
+        <p>We do not collect: device identifiers (IDFA/IDFV), location data, push notification tokens, camera or microphone data, contacts, or payment card information. No third-party analytics SDKs are integrated in the current version.</p>
+
+        <h2>3. Legal Basis (GDPR)</h2>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Processing Activity</th><th>Legal Basis</th><th>GDPR Article</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Account creation &amp; authentication</td><td>Contract performance</td><td>Art. 6(1)(b)</td></tr>
+            <tr><td>Storing conversations &amp; messages</td><td>Contract performance</td><td>Art. 6(1)(b)</td></tr>
+            <tr><td>AI personalisation profiling</td><td>Legitimate interest</td><td>Art. 6(1)(f)</td></tr>
+            <tr><td>Security &amp; abuse prevention</td><td>Legitimate interest</td><td>Art. 6(1)(f)</td></tr>
+            <tr><td>LLM usage logging (admin)</td><td>Legitimate interest</td><td>Art. 6(1)(f)</td></tr>
+          </tbody>
+        </table>
+
+        <h2>4. Third-Party Data Processors</h2>
+        <p>Your message content is transmitted to the following AI providers to generate responses. Each acts as a data processor under a Data Processing Agreement (DPA). We do not sell your data to any third party.</p>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Provider</th><th>Service</th><th>Data Transmitted</th><th>Privacy Policy</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>OpenAI</td><td>LLM + embeddings</td><td>User message content</td><td><a href="https://openai.com/policies/privacy" target="_blank" rel="noopener">openai.com/policies/privacy</a></td></tr>
+            <tr><td>Anthropic</td><td>LLM chat (Claude)</td><td>User message content</td><td><a href="https://anthropic.com/privacy" target="_blank" rel="noopener">anthropic.com/privacy</a></td></tr>
+            <tr><td>Google Gemini</td><td>LLM chat (Gemini Flash)</td><td>User message content</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td></tr>
+            <tr><td>Supabase</td><td>Database, Auth, Storage</td><td>All user &amp; content data</td><td><a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a></td></tr>
+            <tr><td>Wikimedia Foundation (Wikipedia)</td><td>Real-time knowledge search via Wikipedia API</td><td>AI-generated search query terms (no account data)</td><td><a href="https://foundation.wikimedia.org/wiki/Privacy_policy" target="_blank" rel="noopener">foundation.wikimedia.org/wiki/Privacy_policy</a></td></tr>
+          </tbody>
+        </table>
+        <p><strong>Wikipedia API usage:</strong> When your query requires information not found in our internal knowledge base, our AI may send search terms derived from your conversation to the Wikipedia API (operated by the Wikimedia Foundation) to retrieve relevant encyclopaedic content. Only search query terms are transmitted — no account identifiers or personal data are included. Wikipedia content is licensed under Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0); source links are always provided to users.</p>
+
+        <h2>5. Data Retention</h2>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Data Category</th><th>Retention Period</th><th>Deletion Trigger</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Account &amp; identity data</td><td>Duration of account</td><td>Account deletion request</td></tr>
+            <tr><td>Conversations &amp; messages</td><td>Duration of account</td><td>Account deletion request</td></tr>
+            <tr><td>AI profile facts</td><td>Duration of account</td><td>Account or profile deletion request</td></tr>
+            <tr><td>LLM usage logs (admin)</td><td>12 months</td><td>Automated purge</td></tr>
+            <tr><td>Rate limit state</td><td>7-day rolling window</td><td>Automated expiry</td></tr>
+            <tr><td>IP address</td><td>Not stored</td><td>Never persisted</td></tr>
+          </tbody>
+        </table>
+
+        <h2>6. Your Rights</h2>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Right</th><th>Description</th><th>Applies Under</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Access</td><td>Obtain a copy of your personal data</td><td>GDPR / CCPA / PDPO</td></tr>
+            <tr><td>Rectification</td><td>Correct inaccurate data</td><td>GDPR / PDPO</td></tr>
+            <tr><td>Erasure</td><td>Request deletion of your data</td><td>GDPR / CCPA / PDPO</td></tr>
+            <tr><td>Portability</td><td>Receive data in machine-readable format</td><td>GDPR</td></tr>
+            <tr><td>Object to profiling</td><td>Object to AI profiling and automated processing</td><td>GDPR Art. 21</td></tr>
+            <tr><td>Opt-out of sale</td><td>We do not sell data — right is automatically satisfied</td><td>CCPA</td></tr>
+          </tbody>
+        </table>
+        <p><strong>How to exercise:</strong> Email <a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a>. We respond within 30 days. You may also lodge a complaint with your local data protection authority (e.g. ICO for UK, relevant EU supervisory authority).</p>
+
+        <h2>7. Minimum Age</h2>
+        <p>The Service is intended for users aged 16 and above. We do not knowingly collect personal data from individuals under 16. If you believe we have collected data from a minor, please contact us immediately at <a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a> and we will promptly delete such data.</p>
+
+        <h2>8. Data Security</h2>
+        <p>We implement appropriate technical and organisational measures including: Row Level Security (RLS) on all user data tables; JWT tokens stored in iOS Keychain; encrypted password storage; path-based storage isolation for uploaded files; server-side in-memory caching cleared on restart.</p>
+
+        <h2>9. International Data Transfers</h2>
+        <p>When your messages are processed by OpenAI, Anthropic, or Google, data may be transferred to and processed in the United States. Such transfers are governed by each provider's DPA incorporating EU Standard Contractual Clauses (SCCs).</p>
+
+        <h2>10. Future Features</h2>
+        <p>We may in future introduce the following features. When introduced, this Policy will be updated and users notified at least 14 days in advance.</p>
+
+        <h3>10.1 In-App Purchases &amp; Subscriptions</h3>
+        <p>We may introduce paid subscription plans processed via Apple's in-app purchase infrastructure. Subscription-related data (plan type, renewal status) will be stored in your account. We will not receive or store payment card information — all payments are handled by Apple.</p>
+
+        <h3>10.2 Third-Party Login</h3>
+        <p>We may offer third-party authentication options. In accordance with Apple App Store guidelines, Sign in with Apple will always be offered alongside any other social login option on iOS.</p>
+        <table class="legal-table">
+          <thead>
+            <tr><th>Provider</th><th>Data Received</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sign in with Apple</td><td>Name (optional, user-controlled), email or Apple relay email, unique Apple ID</td><td>Apple may mask real email with a relay address</td></tr>
+            <tr><td>Other social login (TBD)</td><td>Name, email address, profile picture, provider user ID</td><td>Only basic profile data; no access to contacts, posts, or other account data</td></tr>
+          </tbody>
+        </table>
+        <p>All data received from third-party login providers is stored in Supabase Auth and subject to the same protections described in this Policy. You can revoke third-party login access at any time via your Apple ID settings or the respective provider's account settings.</p>
+
+        <h3>10.3 Usage Analytics</h3>
+        <p>We may in future integrate usage analytics to improve AI personalisation and product experience. If introduced, the analytics provider will be disclosed in this Policy, and you will be given appropriate notice and, where required by law, the ability to opt out.</p>
+
+        <h2>11. Policy Changes</h2>
+        <p>We may update this Privacy Policy from time to time. Material changes will be communicated via in-app notification or email at least 14 days before taking effect. The current version is always available at: <a href="https://igmusictech.com/legal/masternotes-privacy/" target="_blank" rel="noopener">https://igmusictech.com/legal/masternotes-privacy/</a></p>
+
+        <h2>12. Governing Law &amp; Contact</h2>
+        <p>This Privacy Policy is governed by the laws of the Hong Kong Special Administrative Region, including the Personal Data (Privacy) Ordinance (Cap. 486). For EU/EEA and UK users, the GDPR and UK GDPR apply additionally.</p>
+        <table class="legal-table info-table">
+          <tbody>
+            <tr><td>Data Controller</td><td>Ignition Musictech Limited (炎上音樂科技有限公司)</td></tr>
+            <tr><td>Jurisdiction</td><td>Hong Kong SAR</td></tr>
+            <tr><td>Contact</td><td><a href="mailto:legal-masternotes@igmusictech.com">legal-masternotes@igmusictech.com</a></td></tr>
+            <tr><td>Policy URL</td><td><a href="https://igmusictech.com/legal/masternotes-privacy/" target="_blank" rel="noopener">https://igmusictech.com/legal/masternotes-privacy/</a></td></tr>
+            <tr><td>Effective Date</td><td>2025-06-01</td></tr>
+          </tbody>
+        </table>
+      </div>
+
       </div><!-- /.legal-doc__body -->
     </article>
 
