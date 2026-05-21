@@ -887,11 +887,11 @@ a.mobile-nav-sub-link.is-active::before {
 .legal-content .doc-content h2:first-child { margin-top: 0; }
 
 .legal-content .doc-content h3 {
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0;
-  margin: 24px 0 8px;
-  color: var(--ink-soft);
+  letter-spacing: -0.01em;
+  margin: 28px 0 6px;
+  color: var(--ink);
 }
 
 /* ── h1 row: title + prev/next buttons ───────────────────── */
