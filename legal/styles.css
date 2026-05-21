@@ -1065,6 +1065,9 @@ a.mobile-nav-sub-link.is-active::before {
   margin: 12px 0 24px;
   font-size: 13px;
   line-height: 1.5;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .legal-table th {
   background: var(--bg-soft, #f5f5f5);
@@ -1072,15 +1075,17 @@ a.mobile-nav-sub-link.is-active::before {
   text-align: left;
   padding: 8px 12px;
   border-bottom: 1.5px solid var(--border, #e0e0e0);
-  white-space: nowrap;
 }
 .legal-table td {
   padding: 8px 12px;
   border-bottom: 1px solid var(--border-light, #eee);
   vertical-align: top;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 240px;
 }
 .legal-table tbody tr:last-child td { border-bottom: none; }
-.legal-table a { color: inherit; }
+.legal-table a { color: inherit; word-break: break-all; }
 
 /* Info-style table (key/value, no header) */
 .info-table td:first-child {
@@ -1125,7 +1130,4 @@ a.mobile-nav-sub-link.is-active::before {
 }
 .doc-key-points p:last-child { margin-bottom: 0 !important; }
 
-/* Responsive: scroll tables on small screens */
-@media (max-width: 768px) {
-  .legal-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-}
+/* .legal-table overflow-x is handled in the base rule above */
