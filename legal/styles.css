@@ -886,6 +886,14 @@ a.mobile-nav-sub-link.is-active::before {
 }
 .legal-content .doc-content h2:first-child { margin-top: 0; }
 
+.legal-content .doc-content h3 {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 24px 0 8px;
+  color: var(--ink-soft);
+}
+
 /* ── h1 row: title + prev/next buttons ───────────────────── */
 .legal-title-row {
   display: flex;
@@ -1093,22 +1101,19 @@ a.mobile-nav-sub-link.is-active::before {
   margin: 16px 0;
 }
 
-/* Key-points summary list (top of privacy policy) */
-.doc-key-points { margin: 0 0 28px; }
-.doc-key-points ul { list-style: none; padding: 0; margin: 0; }
-.doc-key-points ul li {
-  padding: 5px 0 5px 20px;
+/* Key-points summary (top of privacy/terms doc) */
+.doc-key-points {
+  margin: 0 0 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.doc-key-points p {
   font-size: 13.5px;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--ink-soft);
-  position: relative;
+  margin: 0 0 8px !important;
 }
-.doc-key-points ul li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--ink-faint);
-}
+.doc-key-points p:last-child { margin-bottom: 0 !important; }
 
 /* Responsive: scroll tables on small screens */
 @media (max-width: 768px) {
