@@ -825,7 +825,7 @@ a.mobile-nav-sub-link.is-active::before {
 
 .toc-item a {
   display: block;
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.45;
   color: var(--ink-soft);
   text-decoration: none;
@@ -963,6 +963,7 @@ a.mobile-nav-sub-link.is-active::before {
   transition: color 0.15s;
 }
 .legal-nav-group-title:hover { color: var(--ink-soft); }
+.legal-nav-group.is-open > .legal-nav-group-title { font-size: 13px; }
 
 .legal-nav-chevron {
   flex-shrink: 0;
