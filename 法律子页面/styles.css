@@ -771,7 +771,7 @@ a.mobile-nav-sub-link.is-active::before {
 .legal-doc-page {
   padding-top: 64px;
   min-height: 100vh;
-  background: var(--white);
+  /* background inherits body's var(--surface) = #f9f9f9 */
 }
 
 .legal-layout {
@@ -815,26 +815,25 @@ a.mobile-nav-sub-link.is-active::before {
   line-height: 1.45;
   color: var(--ink-soft);
   text-decoration: none;
-  padding: 5px 0 5px 12px;
-  border-left: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  padding: 5px 0 5px 8px;
+  cursor: pointer;
+  transition: color 0.15s;
 }
 .toc-item a:hover { color: var(--ink); }
 .toc-item.is-active a {
   color: var(--ink);
-  border-left-color: rgba(0,0,0,0.72);
-  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 /* ── Center content ───────────────────────────────────────── */
 .legal-content {
   min-width: 0;
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--border);
 }
 
 .legal-back-link {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 .legal-back-link a {
   font-size: 13px;
@@ -860,7 +859,12 @@ a.mobile-nav-sub-link.is-active::before {
   letter-spacing: -0.02em;
   line-height: 1.2;
   color: var(--ink);
-  margin-bottom: 40px;
+  margin-bottom: 28px;
+}
+
+/* Card: restore white card styling inside new layout */
+.legal-content .legal-doc__body {
+  position: relative;
 }
 
 /* Override doc-content typography when inside new layout */
@@ -873,6 +877,48 @@ a.mobile-nav-sub-link.is-active::before {
 }
 .legal-content .doc-content h2:first-child { margin-top: 0; }
 
+/* ── Prev / Next navigation buttons (glass, top-right of card) */
+.doc-nav-btns {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: none;
+  gap: 6px;
+  align-items: center;
+  z-index: 2;
+}
+
+.doc-nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(210, 210, 210, 0.7);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0,0,0,0.55);
+  font-size: 14px;
+  font-family: var(--font);
+  font-weight: 500;
+  line-height: 1;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.doc-nav-btn:hover {
+  background: rgba(255,255,255,0.88);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,1);
+  color: rgba(0,0,0,0.8);
+}
+.doc-nav-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* ── Right legal nav sidebar ──────────────────────────────── */
 .legal-nav-sidebar {
   position: sticky;
@@ -880,17 +926,41 @@ a.mobile-nav-sub-link.is-active::before {
 }
 
 .legal-nav-group {
-  margin-bottom: 24px;
+  margin-bottom: 6px;
 }
 
 .legal-nav-group-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  font-family: var(--font);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: 8px;
-  display: block;
+  text-align: left;
+  transition: color 0.15s;
+}
+.legal-nav-group-title:hover { color: var(--ink-soft); }
+
+.legal-nav-chevron {
+  flex-shrink: 0;
+  color: var(--ink-faint);
+  transition: transform 0.22s ease;
+}
+.legal-nav-group.is-open .legal-nav-chevron { transform: rotate(180deg); }
+
+.legal-nav-group-body {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .legal-nav-item {
@@ -915,11 +985,11 @@ a.mobile-nav-sub-link.is-active::before {
 .legal-nav-item:hover::after { transform: translateX(2px); }
 .legal-nav-item.is-active {
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 600;
 }
 .legal-nav-item.is-active::after { color: rgba(0,0,0,0.35); }
 
-/* ── Responsive: tablet (≤1000px) — hide right sidebar ───── */
+/* ── Responsive: tablet (≤1000px) — hide right sidebar, show nav btns */
 @media (max-width: 1000px) {
   .legal-layout {
     grid-template-columns: 190px 1fr;
@@ -927,6 +997,7 @@ a.mobile-nav-sub-link.is-active::before {
     gap: 0 40px;
   }
   .legal-nav-sidebar { display: none; }
+  .doc-nav-btns { display: flex; }
 }
 
 /* ── Responsive: mobile (≤768px) — single column ─────────── */
@@ -944,4 +1015,5 @@ a.mobile-nav-sub-link.is-active::before {
     padding-top: 32px;
     border-top: 1px solid var(--border);
   }
+  .doc-nav-btns { display: flex; }
 }

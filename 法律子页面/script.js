@@ -5,21 +5,23 @@
 (() => {
   let currentLang = 'zh';
 
-  // ── TOC generation + scroll-spy ──────────────────────────
-  let tocObserver = null;
-
+  // ── TOC generation + scroll-spy (scroll-position based) ──
   const buildToc = () => {
     const tocList = document.getElementById('tocList');
     if (!tocList) return;
 
-    // Clear previous observer
-    if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
+    // Remove previous scroll handler
+    if (window._tocScrollHandler) {
+      window.removeEventListener('scroll', window._tocScrollHandler);
+      window._tocScrollHandler = null;
+    }
 
     const activeContent = document.querySelector('.doc-content.is-active');
     if (!activeContent) { tocList.innerHTML = ''; return; }
 
     const headings = Array.from(activeContent.querySelectorAll('h2'));
     tocList.innerHTML = '';
+    if (!headings.length) return;
 
     headings.forEach((h, i) => {
       h.id = `sec-${i + 1}`;
@@ -30,31 +32,86 @@
       a.textContent = h.textContent;
       a.addEventListener('click', (e) => {
         e.preventDefault();
-        const offset = 80;
-        const top = h.getBoundingClientRect().top + window.scrollY - offset;
+        const top = h.getBoundingClientRect().top + window.scrollY - 88;
         window.scrollTo({ top, behavior: 'smooth' });
       });
       li.appendChild(a);
       tocList.appendChild(li);
     });
 
-    // Scroll-spy via IntersectionObserver
-    const items = tocList.querySelectorAll('.toc-item');
-    if (!items.length) return;
+    const items = Array.from(tocList.querySelectorAll('.toc-item'));
 
-    tocObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          items.forEach(item => item.classList.remove('is-active'));
-          const idx = headings.indexOf(entry.target);
-          if (idx >= 0 && items[idx]) items[idx].classList.add('is-active');
-        }
+    // Scroll-spy: active = last heading at or above (scrollY + offset)
+    const updateActive = () => {
+      const scrollPos = window.scrollY + 110;
+      let activeIdx = 0;
+      headings.forEach((h, i) => {
+        if (h.offsetTop <= scrollPos) activeIdx = i;
       });
-    }, { rootMargin: '-72px 0px -55% 0px', threshold: 0 });
+      items.forEach((item, i) => item.classList.toggle('is-active', i === activeIdx));
+    };
 
-    headings.forEach(h => tocObserver.observe(h));
-    // Activate first item immediately
-    if (items[0]) items[0].classList.add('is-active');
+    window._tocScrollHandler = updateActive;
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  };
+
+  // ── Right sidebar accordion ────────────────────────────────
+  const initLegalNav = () => {
+    document.querySelectorAll('.legal-nav-group').forEach(group => {
+      const body = group.querySelector('.legal-nav-group-body');
+      if (!body) return;
+      const hasActive = !!group.querySelector('.legal-nav-item.is-active');
+      if (hasActive) {
+        group.classList.add('is-open');
+        // Set height after paint so transition doesn't fire on load
+        requestAnimationFrame(() => { body.style.height = body.scrollHeight + 'px'; });
+      } else {
+        body.style.height = '0';
+      }
+      const btn = group.querySelector('.legal-nav-group-title');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const isOpen = group.classList.contains('is-open');
+          group.classList.toggle('is-open');
+          body.style.height = isOpen ? '0' : body.scrollHeight + 'px';
+        });
+      }
+    });
+  };
+
+  // ── Prev / Next doc navigation buttons ────────────────────
+  const initDocNav = () => {
+    const prevBtn = document.getElementById('docNavPrev');
+    const nextBtn = document.getElementById('docNavNext');
+    if (!prevBtn || !nextBtn) return;
+
+    const NAV_GROUPS = {
+      website: ['privacy.html', 'cookie-policy.html', 'terms-of-use.html'],
+      masternotes: ['masternotes-privacy.html', 'masternotes-terms.html'],
+    };
+
+    const pathParts = location.pathname.split('/');
+    const currentFile = pathParts[pathParts.length - 1] || '';
+
+    let group = null;
+    let currentIdx = -1;
+    for (const pages of Object.values(NAV_GROUPS)) {
+      const idx = pages.indexOf(currentFile);
+      if (idx !== -1) { group = pages; currentIdx = idx; break; }
+    }
+
+    if (!group) { prevBtn.disabled = true; nextBtn.disabled = true; return; }
+
+    prevBtn.disabled = currentIdx === 0;
+    nextBtn.disabled = currentIdx === group.length - 1;
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIdx > 0) location.href = group[currentIdx - 1];
+    });
+    nextBtn.addEventListener('click', () => {
+      if (currentIdx < group.length - 1) location.href = group[currentIdx + 1];
+    });
   };
 
   const applyLang = (lang) => {
@@ -113,10 +170,14 @@
   try {
     const saved = localStorage.getItem('ig_lang');
     if (saved && saved !== 'zh') applyLang(saved);
-    else buildToc(); // build TOC for default zh language
+    else buildToc();
   } catch(e) {
     buildToc();
   }
+
+  // Init sidebar accordion and doc nav buttons
+  initLegalNav();
+  initDocNav();
 
   // Accordion toggle
   document.querySelectorAll('.accordion__header').forEach((btn) => {
