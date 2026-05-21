@@ -1084,8 +1084,8 @@ a.mobile-nav-sub-link.is-active::before {
 
 /* Notice / callout box */
 .doc-notice {
-  background: rgba(255, 200, 50, 0.08);
-  border-left: 3px solid rgba(200, 150, 0, 0.4);
+  background: rgba(0, 0, 0, 0.03);
+  border-left: 3px solid rgba(0, 0, 0, 0.15);
   padding: 12px 16px;
   border-radius: 0 6px 6px 0;
   font-size: 13.5px;
