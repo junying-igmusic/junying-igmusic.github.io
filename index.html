@@ -2594,12 +2594,13 @@
       hero.classList.add('open');
       navbar.classList.add('open');
 
-      const targetTop  = 20;
-      const targetLeft = 32;
-      const targetW    = 36;
-      const scale  = targetW / savedRect.width;
-      const deltaX = targetLeft - savedRect.left;
-      const deltaY = targetTop  - savedRect.top;
+      /* Measure the actual nav logo position so flyLogo lands exactly
+         on the real logo regardless of screen size or breakpoint */
+      const navImg     = navLogo.querySelector('img');
+      const navImgRect = navImg.getBoundingClientRect();
+      const scale  = navImgRect.width  / savedRect.width;
+      const deltaX = navImgRect.left   - savedRect.left;
+      const deltaY = navImgRect.top    - savedRect.top;
 
       requestAnimationFrame(() => requestAnimationFrame(() => {
         flyLogo.style.transition = 'transform 0.72s cubic-bezier(0.6, 0, 0.2, 1)';
