@@ -87,11 +87,11 @@
     if (!prevBtn || !nextBtn) return;
 
     const NAV_GROUPS = {
-      website: ['privacy.html', 'cookie-policy.html', 'terms-of-use.html'],
-      masternotes: ['masternotes-privacy.html', 'masternotes-terms.html'],
+      website: ['privacy', 'cookie-policy', 'terms-of-use'],
+      masternotes: ['masternotes-privacy', 'masternotes-terms'],
     };
 
-    const pathParts = location.pathname.split('/');
+    const pathParts = location.pathname.split('/').filter(Boolean);
     const currentFile = pathParts[pathParts.length - 1] || '';
 
     let group = null;
@@ -107,10 +107,10 @@
     nextBtn.disabled = currentIdx === group.length - 1;
 
     prevBtn.addEventListener('click', () => {
-      if (currentIdx > 0) location.href = group[currentIdx - 1];
+      if (currentIdx > 0) location.href = '../' + group[currentIdx - 1] + '/';
     });
     nextBtn.addEventListener('click', () => {
-      if (currentIdx < group.length - 1) location.href = group[currentIdx + 1];
+      if (currentIdx < group.length - 1) location.href = '../' + group[currentIdx + 1] + '/';
     });
   };
 
