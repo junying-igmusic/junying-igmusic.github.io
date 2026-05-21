@@ -876,11 +876,6 @@ a.mobile-nav-sub-link.is-active::before {
   margin-bottom: 28px;
 }
 
-/* Card: restore white card styling inside new layout */
-.legal-content .legal-doc__body {
-  position: relative;
-}
-
 /* Override doc-content typography when inside new layout */
 .legal-content .doc-content h2 {
   font-size: 17px;
@@ -891,15 +886,25 @@ a.mobile-nav-sub-link.is-active::before {
 }
 .legal-content .doc-content h2:first-child { margin-top: 0; }
 
-/* ── Prev / Next navigation buttons (glass, top-right of card) */
+/* ── h1 row: title + prev/next buttons ───────────────────── */
+.legal-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.legal-title-row .legal-doc-title {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+/* ── Prev / Next navigation buttons (glass, beside h1) ───── */
 .doc-nav-btns {
-  position: absolute;
-  top: 14px;
-  right: 14px;
   display: none;
   gap: 6px;
   align-items: center;
-  z-index: 2;
+  flex-shrink: 0;
 }
 
 .doc-nav-btn {

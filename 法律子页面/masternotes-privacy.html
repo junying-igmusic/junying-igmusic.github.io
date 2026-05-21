@@ -86,7 +86,13 @@
         <a href="./" data-i18n-zh="← 法律文件" data-i18n-en="← Legal Documents">← 法律文件</a>
       </p>
       <span class="legal-doc-label">Masternotes</span>
-      <h1 class="legal-doc-title" data-i18n-zh="隱私政策" data-i18n-en="Privacy Policy">隱私政策</h1>
+      <div class="legal-title-row">
+        <h1 class="legal-doc-title" data-i18n-zh="隱私政策" data-i18n-en="Privacy Policy">隱私政策</h1>
+        <div class="doc-nav-btns">
+          <button class="doc-nav-btn" id="docNavPrev" aria-label="上一份">&lt;</button>
+          <button class="doc-nav-btn" id="docNavNext" aria-label="下一份">&gt;</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -101,10 +107,6 @@
     <!-- Center: Document content -->
     <article class="legal-content">
       <div class="legal-doc__body">
-        <div class="doc-nav-btns">
-          <button class="doc-nav-btn" id="docNavPrev" aria-label="上一份">&lt;</button>
-          <button class="doc-nav-btn" id="docNavNext" aria-label="下一份">&gt;</button>
-        </div>
       <!-- 將 Masternotes 隱私政策內容貼於此處 / Paste Masternotes Privacy Policy here -->
       </div><!-- /.legal-doc__body -->
     </article>
