@@ -119,7 +119,7 @@
     const isHome    = p === '/' || p === '/index.html';
     const isMaster  = p.startsWith('/masternotes');
     const isContact = p.startsWith('/contact');
-    const isLegal   = p.includes('法律子页面') || p.includes('%E6%B3%95%E5%BE%8B%E5%AD%90%E9%A1%B5%E9%9D%A2');
+    const isLegal   = p.includes('legal') || p.includes('%E6%B3%95%E5%BE%8B%E5%AD%90%E9%A1%B5%E9%9D%A2');
     const isSupport = p.startsWith('/support') || p.includes('support页面') || p.includes('support%E9%A1%B5%E9%9D%A2');
 
     /* Desktop: plain links */
@@ -147,7 +147,7 @@
     document.querySelectorAll('a.nav-dd-item').forEach(a => {
       const h = a.getAttribute('href') || '';
       if (isMaster  && h.includes('masternotes'))  a.classList.add('is-active');
-      if (isLegal   && (h.includes('法律子页面') || h.includes('%E6%B3%95'))) a.classList.add('is-active');
+      if (isLegal   && (h.includes('legal') || h.includes('%E6%B3%95'))) a.classList.add('is-active');
       if (isSupport && h.includes('support'))      a.classList.add('is-active');
     });
 
@@ -164,7 +164,7 @@
       const h = a.getAttribute('href') || '';
       let hit = false;
       if (isMaster  && h.includes('masternotes'))  hit = true;
-      if (isLegal   && (h.includes('法律子页面') || h.includes('%E6%B3%95'))) hit = true;
+      if (isLegal   && (h.includes('legal') || h.includes('%E6%B3%95'))) hit = true;
       if (isSupport && h.includes('support'))      hit = true;
       if (hit) {
         a.classList.add('is-active');
