@@ -763,3 +763,185 @@ a.mobile-nav-sub-link.is-active::before {
   }
   .legal-card:hover { box-shadow: none; transform: none; }
 }
+
+/* ============================================================
+   Three-column document layout (Goodnotes-style)
+   ============================================================ */
+
+.legal-doc-page {
+  padding-top: 64px;
+  min-height: 100vh;
+  background: var(--white);
+}
+
+.legal-layout {
+  display: grid;
+  grid-template-columns: 210px 1fr 190px;
+  gap: 0 52px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 56px 40px 100px;
+  align-items: start;
+}
+
+/* ── Shared sidebar label ─────────────────────────────────── */
+.sidebar-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* ── Left TOC sidebar ─────────────────────────────────────── */
+.legal-toc {
+  position: sticky;
+  top: 88px;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-item a {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 5px 0 5px 12px;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.toc-item a:hover { color: var(--ink); }
+.toc-item.is-active a {
+  color: var(--ink);
+  border-left-color: rgba(0,0,0,0.72);
+  font-weight: 500;
+}
+
+/* ── Center content ───────────────────────────────────────── */
+.legal-content {
+  min-width: 0;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal-back-link {
+  margin-bottom: 32px;
+}
+.legal-back-link a {
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.legal-back-link a:hover { color: var(--ink); }
+
+.legal-doc-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+
+.legal-doc-title {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 40px;
+}
+
+/* Override doc-content typography when inside new layout */
+.legal-content .doc-content h2 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 40px 0 10px;
+  color: var(--ink);
+}
+.legal-content .doc-content h2:first-child { margin-top: 0; }
+
+/* ── Right legal nav sidebar ──────────────────────────────── */
+.legal-nav-sidebar {
+  position: sticky;
+  top: 88px;
+}
+
+.legal-nav-group {
+  margin-bottom: 24px;
+}
+
+.legal-nav-group-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.legal-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 5px 0;
+  transition: color 0.15s;
+}
+.legal-nav-item::after {
+  content: '→';
+  font-size: 12px;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+  margin-left: 6px;
+  transition: transform 0.15s;
+}
+.legal-nav-item:hover { color: var(--ink); }
+.legal-nav-item:hover::after { transform: translateX(2px); }
+.legal-nav-item.is-active {
+  color: var(--ink);
+  font-weight: 500;
+}
+.legal-nav-item.is-active::after { color: rgba(0,0,0,0.35); }
+
+/* ── Responsive: tablet (≤1000px) — hide right sidebar ───── */
+@media (max-width: 1000px) {
+  .legal-layout {
+    grid-template-columns: 190px 1fr;
+    max-width: 880px;
+    gap: 0 40px;
+  }
+  .legal-nav-sidebar { display: none; }
+}
+
+/* ── Responsive: mobile (≤768px) — single column ─────────── */
+@media (max-width: 768px) {
+  .legal-layout {
+    grid-template-columns: 1fr;
+    padding: 36px 24px 80px;
+    gap: 0;
+  }
+  .legal-toc { display: none; }
+  .legal-nav-sidebar {
+    display: block;
+    position: static;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+}

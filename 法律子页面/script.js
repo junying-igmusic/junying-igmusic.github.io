@@ -5,6 +5,58 @@
 (() => {
   let currentLang = 'zh';
 
+  // ── TOC generation + scroll-spy ──────────────────────────
+  let tocObserver = null;
+
+  const buildToc = () => {
+    const tocList = document.getElementById('tocList');
+    if (!tocList) return;
+
+    // Clear previous observer
+    if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
+
+    const activeContent = document.querySelector('.doc-content.is-active');
+    if (!activeContent) { tocList.innerHTML = ''; return; }
+
+    const headings = Array.from(activeContent.querySelectorAll('h2'));
+    tocList.innerHTML = '';
+
+    headings.forEach((h, i) => {
+      h.id = `sec-${i + 1}`;
+      const li = document.createElement('li');
+      li.className = 'toc-item';
+      const a = document.createElement('a');
+      a.href = `#sec-${i + 1}`;
+      a.textContent = h.textContent;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const offset = 80;
+        const top = h.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Scroll-spy via IntersectionObserver
+    const items = tocList.querySelectorAll('.toc-item');
+    if (!items.length) return;
+
+    tocObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          items.forEach(item => item.classList.remove('is-active'));
+          const idx = headings.indexOf(entry.target);
+          if (idx >= 0 && items[idx]) items[idx].classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-72px 0px -55% 0px', threshold: 0 });
+
+    headings.forEach(h => tocObserver.observe(h));
+    // Activate first item immediately
+    if (items[0]) items[0].classList.add('is-active');
+  };
+
   const applyLang = (lang) => {
     currentLang = lang;
 
@@ -28,6 +80,9 @@
     if (titleZh && titleEn) document.title = lang === 'zh' ? titleZh : titleEn;
 
     try { localStorage.setItem('ig_lang', lang); } catch(e) {}
+
+    // Rebuild TOC after language switch
+    buildToc();
   };
 
   const pill = document.getElementById('lang-pill');
@@ -58,7 +113,10 @@
   try {
     const saved = localStorage.getItem('ig_lang');
     if (saved && saved !== 'zh') applyLang(saved);
-  } catch(e) {}
+    else buildToc(); // build TOC for default zh language
+  } catch(e) {
+    buildToc();
+  }
 
   // Accordion toggle
   document.querySelectorAll('.accordion__header').forEach((btn) => {
