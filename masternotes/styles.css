@@ -1393,7 +1393,7 @@ a.mobile-nav-sub-link.is-active::before {
 }
 
 @media (max-width: 480px) {
-  .hero-block__title { font-size: 26px; }
+  .hero-block__title { font-size: 28px; }
   .section-title { font-size: 26px; }
   .section-sub { font-size: 15px; margin-bottom: 28px; }
   .btn--mini { padding: 6px 12px; font-size: 12px; }
