@@ -414,23 +414,24 @@ img, video { display: block; max-width: 100%; }
   max-width: 480px;
 }
 
-/* ----- Feature header: icon + title on same row ----- */
+/* ----- Feature header: icon left, title+subtitle stacked right ----- */
 .feature__header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   margin-bottom: 20px;
 }
-.feature__header .feature__icon { margin-bottom: 0; }
-.feature__header .feature__title { margin: 0; }
+.feature__header .feature__icon { margin-bottom: 0; flex-shrink: 0; }
+.feature__title-group { display: flex; flex-direction: column; gap: 4px; }
+.feature__title-group .feature__title { margin: 0; }
 
-/* ----- Feature subtitle (bold, above body) ----- */
+/* ----- Feature subtitle (bold, sits directly below title) ----- */
 .feature__sub {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.005em;
-  color: var(--text);
-  margin: 0 0 20px;
+  color: var(--text-sub);
+  margin: 0;
   max-width: 480px;
 }
 
