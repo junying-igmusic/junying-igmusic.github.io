@@ -499,8 +499,9 @@ img, video { display: block; max-width: 100%; }
   letter-spacing: -0.03em;
   line-height: 1.08;
   margin: 0 0 20px;
-  color: var(--brand);
+  color: var(--text);
 }
+.hero-block__title span { display: block; }
 .hero-block__sub {
   font-size: 17px;
   line-height: 1.65;
