@@ -419,7 +419,7 @@ img, video { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 }
 .feature__header .feature__icon { margin-bottom: 0; }
 .feature__header .feature__title { margin: 0; }
