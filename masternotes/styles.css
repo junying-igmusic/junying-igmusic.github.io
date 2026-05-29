@@ -495,7 +495,7 @@ img, video { display: block; max-width: 100%; }
   transform: scale(0.95);
 }
 .hero-block__title {
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(26px, 3.2vw, 44px);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.08;
@@ -1392,7 +1392,7 @@ a.mobile-nav-sub-link.is-active::before {
 }
 
 @media (max-width: 480px) {
-  .hero-block__title { font-size: 32px; }
+  .hero-block__title { font-size: 26px; }
   .section-title { font-size: 26px; }
   .section-sub { font-size: 15px; margin-bottom: 28px; }
   .btn--mini { padding: 6px 12px; font-size: 12px; }
