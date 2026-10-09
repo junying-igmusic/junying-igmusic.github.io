@@ -89,6 +89,7 @@
     const NAV_GROUPS = {
       website: ['privacy', 'cookie-policy', 'terms-of-use'],
       masternotes: ['masternotes-privacy', 'masternotes-terms'],
+      staffnotes: ['staffnotes-privacy', 'staffnotes-terms'],
     };
 
     const pathParts = location.pathname.split('/').filter(Boolean);
